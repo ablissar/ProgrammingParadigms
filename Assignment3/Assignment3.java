@@ -10,16 +10,25 @@ public class Assignment3
         int m_mpg;
         int m_maxSpeed;
 
-        m_carDescription = JOptionPane.showInputDialog("Car description?");
-        m_capacity = Integer.parseInt(JOptionPane.showInputDialog("Fuel capacity?"));
-        m_engineDescription = JOptionPane.showInputDialog("Engine description?");
-        m_mpg = Integer.parseInt(JOptionPane.showInputDialog("MPG?"));
-        m_maxSpeed = Integer.parseInt(JOptionPane.showInputDialog("Max speed?"));
+        try
+        {
+            m_carDescription = JOptionPane.showInputDialog("Car description?");
+            m_capacity = Integer.parseInt(JOptionPane.showInputDialog("Fuel capacity (gallons)?"));
+            m_engineDescription = JOptionPane.showInputDialog("Engine description?");
+            m_mpg = Integer.parseInt(JOptionPane.showInputDialog("MPG?"));
+            m_maxSpeed = Integer.parseInt(JOptionPane.showInputDialog("Max speed (MPH)?"));
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Invalid data entered. Exiting.");
+            return;
+        }
 
         JOptionPane.showMessageDialog(null,
-                m_carDescription + "\n" +
+                "Car description: " + m_carDescription + "\n" +
                 "Fuel capacity: " + m_capacity + "\n" +
-                m_engineDescription + "\n" +
+                "Engine description: " + m_engineDescription + "\n" +
                 "MPG: " + m_mpg + "\n" +
                 "Max speed: " + m_maxSpeed + "\n");
     }
