@@ -5,6 +5,7 @@ public class Assignment3
 {
     public static void main(String[] args)
     {
+        boolean valid;
         String m_carDescription;
         int m_capacity;
         String m_engineDescription;       
@@ -18,10 +19,22 @@ public class Assignment3
         try
         {
             m_carDescription = JOptionPane.showInputDialog("Car description?");
-            m_capacity = Integer.parseInt(JOptionPane.showInputDialog("Fuel capacity (gallons)?"));
+            do
+            {
+                m_capacity = Integer.parseInt(JOptionPane.showInputDialog("Fuel capacity (gallons)?"));
+                valid = (m_capacity > 0) ? true : false;
+            }while(!valid);
             m_engineDescription = JOptionPane.showInputDialog("Engine description?");
-            m_mpg = Integer.parseInt(JOptionPane.showInputDialog("MPG?"));
-            m_maxSpeed = Integer.parseInt(JOptionPane.showInputDialog("Max speed (MPH)?"));
+            do
+            {
+                m_mpg = Integer.parseInt(JOptionPane.showInputDialog("MPG?"));
+                valid = (m_mpg> 0) ? true : false;
+            }while(!valid);
+            do
+            {
+                m_maxSpeed = Integer.parseInt(JOptionPane.showInputDialog("Max speed (MPH)?"));
+                valid = (m_maxSpeed> 0) ? true : false;
+            }while(!valid);
         }
         catch(Exception e)
         {
@@ -38,15 +51,25 @@ public class Assignment3
 
         try
         {
-            m_legs = Integer.parseInt(JOptionPane.showInputDialog("Number of legs?"));
+            do
+            {
+                m_legs = Integer.parseInt(JOptionPane.showInputDialog("Number of legs?"));
+                valid = (m_legs > 0) ? true : false;
+            }while(!valid);
+
             for(int i = 1; i <= m_legs; i++)
             {
                 int distance;
                 double xRatio;
                 double yRatio;
 
-                distance = Integer.parseInt(
-                        JOptionPane.showInputDialog("Distance for leg " + i + "?"));
+                do
+                {
+                    distance = Integer.parseInt(
+                            JOptionPane.showInputDialog("Distance for leg " + i + "?"));
+                    valid = (distance> 0) ? true : false;
+                }while(!valid);
+
                 xRatio = Double.parseDouble(
                         JOptionPane.showInputDialog("X ratio for leg " + i + "?"));
                 yRatio = Double.parseDouble(
