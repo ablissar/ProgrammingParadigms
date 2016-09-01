@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+/home/adam/Git/ProgrammingParadigms/.metadata/.plugins/org.eclipse.jdt.core
+3124604304.index
