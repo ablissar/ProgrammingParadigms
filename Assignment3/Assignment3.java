@@ -57,7 +57,7 @@ public class Assignment3
                 valid = (legs > 0) ? true : false;
             }while(!valid);
 
-            for(int i = 1; i <= legs; i++)
+            for(int i = 0; i < legs; i++)
             {
                 int distance;
                 double xRatio;
@@ -66,14 +66,14 @@ public class Assignment3
                 do
                 {
                     distance = Integer.parseInt(
-                            JOptionPane.showInputDialog("Distance for leg " + i + "?"));
+                            JOptionPane.showInputDialog("Distance for leg " + (i+1) + "?"));
                     valid = (distance> 0) ? true : false;
                 }while(!valid);
 
                 xRatio = Double.parseDouble(
-                        JOptionPane.showInputDialog("X ratio for leg " + i + "?"));
+                        JOptionPane.showInputDialog("X ratio for leg " + (i+1) + "?"));
                 yRatio = Double.parseDouble(
-                        JOptionPane.showInputDialog("Y ratio for leg " + i + "?"));
+                        JOptionPane.showInputDialog("Y ratio for leg " + (i+1) + "?"));
 
                 distances[i] = distance;
                 xRatios[i] = xRatio;
@@ -89,10 +89,12 @@ public class Assignment3
         Car car1 = new Car( carDescription, capacity, engine1 );
         car1.fillUp();
 
-        for (int i = 1; i <= legs; i++)
+        for (int i = 0; i < legs; i++)
         {
-
+            car1.drive(distances[i], xRatios[i], yRatios[i]);
         }
+
+        return 0;
     }
 }
 
