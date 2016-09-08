@@ -1,5 +1,6 @@
-import javax.swing.JOptionPane;
 import java.util.*;
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 public class Assignment3
 {
@@ -15,6 +16,8 @@ public class Assignment3
         int[] distances = new int[10];
         double[] xRatios = new double[10];
         double[] yRatios = new double[10];
+        int xPos;
+        int yPos;
 
         try
         {
@@ -89,12 +92,20 @@ public class Assignment3
         Car car1 = new Car( carDescription, capacity, engine1 );
         car1.fillUp();
 
+        JFrame application = new JFrame();
+
         for (int i = 0; i < legs; i++)
         {
+            xPos = car1.getX();
+            yPos = car1.getY();
             car1.drive(distances[i], xRatios[i], yRatios[i]);
+            DrivePanel panel = new DrivePanel( xPos, yPos, car1.getX(), car1.getY() );
+            application.add( panel );
         }
+        application.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+        application.setSize( 600, 600 );
+        application.setVisible( true );
 
-        return 0;
     }
 }
 
