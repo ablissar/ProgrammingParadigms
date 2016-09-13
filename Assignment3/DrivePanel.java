@@ -1,5 +1,5 @@
 import java.awt.*;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class DrivePanel extends JPanel
 {
@@ -17,7 +17,6 @@ public class DrivePanel extends JPanel
     {
         super.paintComponent( g );
 
-        int width = getWidth();
         int height = getHeight();
 
         for( int i = 0; i < 10; i++)
@@ -28,6 +27,8 @@ public class DrivePanel extends JPanel
             }
             g.drawLine( m_coordinates[i].x, (height - m_coordinates[i].y),
                         m_coordinates[i+1].x, (height - m_coordinates[i+1].y) );
+            g.drawString( "(" + m_coordinates[i+1].x + "," + m_coordinates[i+1].y + ")",
+                            m_coordinates[i+1].x + 10, (height - m_coordinates[i+1].y) );
         }
     }
 }
