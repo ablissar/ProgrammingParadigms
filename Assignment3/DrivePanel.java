@@ -1,31 +1,34 @@
+import java.awt.*;
 import javax.swing.JPanel;
-import java.awt.Graphics;
 
 public class DrivePanel extends JPanel
 {
-    int m_currentXPos = 0;
-    int m_currentYPos = 0;
-    int m_xPos = 0;
-    int m_yPos = 0;
+    Point[] m_coordinates = new Point[10];
 
-    public DrivePanel( int currentXPos,
-                       int currentYPos,
-                       int xPos,
-                       int yPos)
+    public DrivePanel( Point[] coordinates )
     {
-        m_currentXPos = currentXPos;
-        m_currentYPos = currentYPos;
-        m_xPos = xPos;
-        m_yPos = yPos;
+        for( int i = 0; i < 10; i++)
+        {
+            m_coordinates[i] = coordinates[i];
+        }
     }
 
-    public void paintComponent( Graphics g)
+    public void paintComponent( Graphics g )
     {
         super.paintComponent( g );
 
         int width = getWidth();
         int height = getHeight();
 
-        g.drawLine(m_currentXPos, m_currentYPos, m_xPos, m_yPos);
-    }    
+        for( int i = 0; i < 10; i++)
+        {
+            if (m_coordinates[i+1] == null)
+            {
+                break;
+            }
+            g.drawLine( m_coordinates[i].x, (height - m_coordinates[i].y),
+                        m_coordinates[i+1].x, (height - m_coordinates[i+1].y) );
+        }
+    }
 }
+

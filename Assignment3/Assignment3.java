@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.*;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -16,8 +17,7 @@ public class Assignment3
         int[] distances = new int[10];
         double[] xRatios = new double[10];
         double[] yRatios = new double[10];
-        int xPos;
-        int yPos;
+        Point[] coordinates = new Point[10]; 
 
         try
         {
@@ -92,17 +92,20 @@ public class Assignment3
         Car car1 = new Car( carDescription, capacity, engine1 );
         car1.fillUp();
 
+
+        for (int i = 0; i <= legs; i++)
+        {
+            coordinates[i] = new Point( car1.getX(), car1.getY() );
+            car1.drive(distances[i], xRatios[i], yRatios[i]);
+        }
+
+        DrivePanel panel = new DrivePanel( coordinates );
+
         JFrame application = new JFrame();
 
-        for (int i = 0; i < legs; i++)
-        {
-            xPos = car1.getX();
-            yPos = car1.getY();
-            car1.drive(distances[i], xRatios[i], yRatios[i]);
-            DrivePanel panel = new DrivePanel( xPos, yPos, car1.getX(), car1.getY() );
-            application.add( panel );
-        }
         application.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+
+        application.setContentPane( panel );
         application.setSize( 600, 600 );
         application.setVisible( true );
 
