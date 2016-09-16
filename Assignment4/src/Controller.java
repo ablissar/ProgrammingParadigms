@@ -1,4 +1,3 @@
-
 import java.awt.Graphics;
 import java.io.IOException;
 import java.awt.event.MouseListener;
@@ -24,6 +23,7 @@ class Controller implements MouseListener
     public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			// Gets here is left mouse button was clicked
+			model.addSprite( e.getX(), e.getY() );
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
 		}
