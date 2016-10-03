@@ -1,9 +1,7 @@
 import java.awt.Graphics;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import javax.swing.Timer;
 import javax.swing.SwingUtilities;
 
 class Controller implements MouseListener
@@ -14,7 +12,6 @@ class Controller implements MouseListener
     Controller() throws IOException, Exception {
         model = new Model();
         view = new View(this);
-        new Timer(50, view).start();
     }
 
     public void update(Graphics g) {
@@ -25,9 +22,11 @@ class Controller implements MouseListener
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			// Gets here is left mouse button was clicked
 			model.addSprite( e.getX(), e.getY() );
+			view.repaint();
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
 			model.updateScene();
+			view.repaint();
 		}
     }
 
