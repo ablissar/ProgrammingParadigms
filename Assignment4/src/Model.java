@@ -6,10 +6,11 @@ import java.util.ArrayList;
 class Model
 {
     private ArrayList<Sprite> sprites = new ArrayList<>();
+	int i = 0;
 
     Model() throws IOException 
     {
-		sprites.add( new Sprite("smiley.jpg") );
+    	sprites.add( new CopCar() );
     }
 
     public void update(Graphics g) 
@@ -22,8 +23,22 @@ class Model
     
     public void addSprite(int x, int y)
     {
-    	sprites.add( new Sprite("smiley.jpg") );
+    	if( (i % 2) == 0)
+    	{
+    		sprites.add( new RobberCar() );
+    	}
+    	else
+    	{
+    		sprites.add( new CopCar() );
+    	}
+    	
     	sprites.get(sprites.size() - 1).setX(x);
     	sprites.get(sprites.size() - 1).setY(y);
+    	i++;
+    }
+    
+    public ArrayList<Sprite> getSprites()
+    {
+    	return sprites;
     }
 }
