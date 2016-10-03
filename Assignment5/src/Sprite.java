@@ -7,7 +7,6 @@ import java.io.IOException;
 
 class Sprite
 {
-	//private String jpgName;
 	private int locationX;
 	private int locationY;
 	private Image image;
@@ -35,8 +34,8 @@ class Sprite
 	
 	public void update(Graphics g) {
         // Move the sprite
-		locationX = locationX + 1;
-		locationY = locationY + 1;
+		//locationX = locationX + 1;
+		//locationY = locationY + 1;
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
 	}
 }

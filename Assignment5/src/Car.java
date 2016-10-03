@@ -6,6 +6,8 @@
  * @version 1.0
  */
 
+import java.awt.Graphics;
+
 public class Car extends Sprite
 {
     /**
@@ -38,12 +40,13 @@ public class Car extends Sprite
      */
     public Car(String descriptionIn,
                 int capacityIn,
-                Engine engineIn)
+                Engine engineIn,
+                String jpgName)
     {
     	/**
     	 * Call Sprite Constructor
     	 */
-    	super("red-car.jpg");
+    	super( jpgName );
     	
         /**
          * Set description
@@ -172,6 +175,11 @@ public class Car extends Sprite
         setY( (int) (getY() + yDistance) );
 
         return (double)distance;
+    }
+    
+    public void update( Graphics g )
+    {
+    	super.update( g );
     }
 }
 

@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.Timer;
@@ -26,6 +27,11 @@ class Controller implements MouseListener
 			model.addSprite( e.getX(), e.getY() );
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
+			ArrayList<Sprite> sprites = model.getSprites();
+			for ( Sprite sprite : sprites)
+			{
+				((Car)sprite).fillUp();
+			}
 		}
     }
 

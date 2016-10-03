@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-@SuppressWarnings("serial")
 public class View extends JFrame implements ActionListener {
 
     private class MyPanel extends JPanel {
@@ -34,3 +33,4 @@ public class View extends JFrame implements ActionListener {
         repaint();
     }
 }
+
