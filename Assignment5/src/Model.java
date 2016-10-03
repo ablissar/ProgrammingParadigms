@@ -10,7 +10,7 @@ class Model
 
     Model() throws IOException 
     {
-    	sprites.add( new CopCar() );
+    	sprites.add( new Bank() );
     }
 
     public void update(Graphics g) 
