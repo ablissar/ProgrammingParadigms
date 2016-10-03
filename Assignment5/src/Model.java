@@ -17,7 +17,8 @@ class Model
     {
 		for( Sprite sprite : sprites)
 		{
-			sprite.update(g);
+			sprite.updateImage(g);
+			sprite.updateState();
 		}
     }
     

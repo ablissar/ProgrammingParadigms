@@ -1,3 +1,4 @@
+import java.awt.Graphics;
 
 public class Bank extends Sprite 
 {
@@ -10,5 +11,10 @@ public class Bank extends Sprite
 		setX( 300 );
 		setY( 300 );
 	}
+	
+	public void updateImage( Graphics g )
+    {
+    	super.updateImage( g );
+    }
 
 }

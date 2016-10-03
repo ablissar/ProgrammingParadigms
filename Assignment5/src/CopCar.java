@@ -14,10 +14,14 @@ public class CopCar extends Car
 		yRatio = randomnum.nextInt(11) - 5;
 		fillUp();
 	}
-
-	public void update( Graphics g )
+	
+	public void updateImage( Graphics g )
 	{
-		super.update(g);
+		super.updateImage(g);
+	}
+	
+	public void updateState()
+	{
 		drive( 20, xRatio, yRatio );
 	}
 }

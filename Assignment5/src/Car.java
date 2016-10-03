@@ -177,9 +177,9 @@ public class Car extends Sprite
         return (double)distance;
     }
     
-    public void update( Graphics g )
+    public void updateImage( Graphics g )
     {
-    	super.update( g );
+    	super.updateImage( g );
     }
 }
 

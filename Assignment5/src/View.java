@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 
 public class View extends JFrame implements ActionListener {
 
-    private class MyPanel extends JPanel {
+	private class MyPanel extends JPanel {
         Controller controller;
 
         MyPanel(Controller c) {

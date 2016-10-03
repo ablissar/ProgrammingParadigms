@@ -16,9 +16,13 @@ public class RobberCar extends Car
 		fillUp();
 	}
 
-	public void update( Graphics g )
+	public void updateImage( Graphics g )
 	{
-		super.update(g);
+		super.updateImage(g);
+	}
+	
+	public void updateState()
+	{
 		drive( 40, xRatio, yRatio );
 	}
 }

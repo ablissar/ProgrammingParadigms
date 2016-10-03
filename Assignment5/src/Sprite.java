@@ -23,7 +23,8 @@ class Sprite
 	public void setX(int x) { locationX = x; }
 	public void setY(int y) { locationY = y; }
 	
-	public void setImage(String imagePath) {
+	public void setImage(String imagePath) 
+	{
         try {
             image = ImageIO.read(new File(imagePath));
         } catch (IOException ioe) {
@@ -32,10 +33,16 @@ class Sprite
 	}
 	public Image getImage() { return image; }	
 	
-	public void update(Graphics g) {
+	public void updateImage(Graphics g) 
+	{
         // Move the sprite
 		//locationX = locationX + 1;
 		//locationY = locationY + 1;
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
+	}
+	
+	public void updateState()
+	{
+		
 	}
 }
