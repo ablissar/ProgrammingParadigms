@@ -27,14 +27,16 @@ class Model
     	if( (i % 2) == 0)
     	{
     		sprites.add( new RobberCar() );
+    		sprites.get(sprites.size() - 1).setX(300);
+    		sprites.get(sprites.size() - 1).setY(300);
     	}
     	else
     	{
     		sprites.add( new CopCar() );
+    		sprites.get(sprites.size() - 1).setX(x);
+        	sprites.get(sprites.size() - 1).setY(y);
     	}
     	
-    	sprites.get(sprites.size() - 1).setX(x);
-    	sprites.get(sprites.size() - 1).setY(y);
     	i++;
     }
     
