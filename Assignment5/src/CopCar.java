@@ -8,7 +8,7 @@ public class CopCar extends Car
 	
 	public CopCar() 
 	{
-		super("copCar", 30, new Engine( "copEngine", 30, 25 ), "cop-car.jpg" );
+		super("copCar", 5000, new Engine( "copEngine", 30, 25 ), "cop-car.jpg" );
 		Random randomnum = new Random();
 		xRatio = randomnum.nextInt(11) - 5;
 		yRatio = randomnum.nextInt(11) - 5;

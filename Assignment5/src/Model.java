@@ -38,8 +38,11 @@ class Model
     	i++;
     }
     
-    public ArrayList<Sprite> getSprites()
+    public void updateScene()
     {
-    	return sprites;
+    	for( Sprite sprite : sprites )
+    	{
+    		sprite.updateState();
+    	}
     }
 }

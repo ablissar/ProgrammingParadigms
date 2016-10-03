@@ -9,7 +9,7 @@ public class RobberCar extends Car
 	
 	public RobberCar()
 	{
-		super("robberCar", 20, new Engine( "robberEngine", 20, 50 ), "red-car.jpg" );
+		super("robberCar", 5000, new Engine( "robberEngine", 20, 50 ), "red-car.jpg" );
 		Random randomnum = new Random();
 		xRatio = randomnum.nextInt(11) - 5;
 		yRatio = randomnum.nextInt(11) - 5;

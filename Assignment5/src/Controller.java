@@ -27,11 +27,7 @@ class Controller implements MouseListener
 			model.addSprite( e.getX(), e.getY() );
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
-			ArrayList<Sprite> sprites = model.getSprites();
-			for ( Sprite sprite : sprites)
-			{
-				((Car)sprite).fillUp();
-			}
+			model.updateScene();
 		}
     }
 
