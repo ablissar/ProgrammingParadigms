@@ -18,7 +18,6 @@ class Model
 		for( Sprite sprite : sprites)
 		{
 			sprite.updateImage(g);
-			sprite.updateState();
 		}
     }
     
@@ -36,7 +35,6 @@ class Model
     		sprites.get(sprites.size() - 1).setX(x);
         	sprites.get(sprites.size() - 1).setY(y);
     	}
-    	
     	i++;
     }
     
@@ -44,7 +42,7 @@ class Model
     {
     	for( Sprite sprite : sprites )
     	{
-    		sprite.updateState();
+    		sprite.updateState( width, height );
     	}
     }
 }

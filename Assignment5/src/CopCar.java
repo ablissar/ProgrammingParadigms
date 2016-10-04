@@ -6,6 +6,9 @@ public class CopCar extends Car
 	private static int xRatio;
 	private static int yRatio;
 	
+	private boolean posX = true;
+	private boolean posY = true;
+	
 	public CopCar() 
 	{
 		super("copCar", 5000, new Engine( "copEngine", 30, 25 ), "cop-car.jpg" );
@@ -20,8 +23,28 @@ public class CopCar extends Car
 		super.updateImage(g);
 	}
 	
-	public void updateState()
+	public void updateState( int width, int height )
 	{
-		drive( 20, xRatio, yRatio );
+		// Use the width and height values for the window to set posX and posY
+		if( getX() > width - 40 || getX() < 5 )
+		{
+			posX = !posX;
+		}
+		if( getY() > height - 75 || getY() < 10 ) 
+		{
+			posY = !posY;
+		}
+
+		// Use posX and posY variables to determine whether the movement should be positive or negative
+		if( posX )
+		{
+			if( posY ) drive( 20, xRatio, yRatio );
+			else drive( 20, xRatio, -yRatio );
+		}
+		else
+		{
+			if( posY ) drive( 20, -xRatio, yRatio );
+			else drive( 20, -xRatio, -yRatio );
+		}
 	}
 }

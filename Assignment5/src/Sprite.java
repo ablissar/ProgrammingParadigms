@@ -41,7 +41,8 @@ class Sprite
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
 	}
 	
-	public void updateState()
+	
+	public void updateState( int width, int height )
 	{
 		
 	}

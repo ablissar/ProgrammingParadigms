@@ -21,7 +21,7 @@ public class RobberCar extends Car
 		super.updateImage(g);
 	}
 	
-	public void updateState()
+	public void updateState( int height, int width )
 	{
 		drive( 40, xRatio, yRatio );
 	}
