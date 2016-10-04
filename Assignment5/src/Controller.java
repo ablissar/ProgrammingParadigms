@@ -25,7 +25,7 @@ class Controller implements MouseListener
 			view.repaint();
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
-			model.updateScene();
+			model.updateScene( view.getWidth(), view.getHeight() );
 			view.repaint();
 		}
     }

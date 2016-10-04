@@ -40,7 +40,7 @@ class Model
     	i++;
     }
     
-    public void updateScene()
+    public void updateScene( int width, int height )
     {
     	for( Sprite sprite : sprites )
     	{
