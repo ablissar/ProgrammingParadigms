@@ -31,7 +31,7 @@ public class RobberCar extends Car
 	{
 		if(!isCaptured)
 		{
-			drive( 40, xRatio, yRatio );
+			drive( 4, xRatio, yRatio );
 		}
 		
 		if( (getX() < -60

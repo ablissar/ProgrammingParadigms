@@ -38,13 +38,13 @@ public class CopCar extends Car
 		// Use posX and posY variables to determine whether the movement should be positive or negative
 		if( posX )
 		{
-			if( posY ) drive( 20, xRatio, yRatio );
-			else drive( 20, xRatio, -yRatio );
+			if( posY ) drive( 2, xRatio, yRatio );
+			else drive( 2, xRatio, -yRatio );
 		}
 		else
 		{
-			if( posY ) drive( 20, -xRatio, yRatio );
-			else drive( 20, -xRatio, -yRatio );
+			if( posY ) drive( 2, -xRatio, yRatio );
+			else drive( 2, -xRatio, -yRatio );
 		}
 	}
 }

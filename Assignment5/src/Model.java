@@ -77,4 +77,12 @@ class Model
 			}
 		}
     }
+    
+    public void initialize()
+    {
+    	sprites.clear();
+    	sprites.add( new Bank() );
+    	RobberCar.numCaptured = 0;
+    	RobberCar.numEscaped = 0;
+    }
 }
