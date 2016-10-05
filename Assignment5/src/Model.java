@@ -43,6 +43,15 @@ class Model
     	for( Sprite sprite : sprites )
     	{
     		sprite.updateState( width, height );
+    		for ( Sprite sprite2 : sprites )
+    		{
+    			if( (sprite instanceof CopCar)
+    					&& (sprite2 instanceof RobberCar) 
+    					&& sprite.overlaps(sprite2) )
+    			{
+    				System.out.println("Gotcha!");
+    			}
+    		}
     	}
     }
 }
