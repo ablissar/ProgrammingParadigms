@@ -59,6 +59,6 @@ public class RobberCar extends Car
 	
 	public boolean isEscaped()
 	{
-		return isEscaped();
+		return isEscaped;
 	}
 }

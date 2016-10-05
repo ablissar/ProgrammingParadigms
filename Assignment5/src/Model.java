@@ -60,21 +60,21 @@ class Model
     				}
     			}
     		}
-    		
-    		// If the sprite is a robber car and it's escaped,
-    		// remove it from the list
-    		Iterator<Sprite> iter = sprites.iterator();
-    		while( iter.hasNext() )
-    		{
-    			Sprite s = iter.next();
-    			if( s instanceof RobberCar )
-    			{
-    				if( ((RobberCar)s).isEscaped() )
-    				{
-    					iter.remove();
-    				}
-    			}
-    		}
     	}
+    	
+    	// If the sprite is a robber car and it's escaped,
+		// remove it from the list
+		Iterator<Sprite> iter = sprites.iterator();
+		while( iter.hasNext() )
+		{
+			Sprite s = iter.next();
+			if( s instanceof RobberCar )
+			{
+				if( ((RobberCar)s).isEscaped() )
+				{
+					iter.remove();
+				}
+			}
+		}
     }
 }

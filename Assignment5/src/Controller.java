@@ -1,10 +1,13 @@
 import java.awt.Graphics;
+
 import java.io.IOException;
 import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import javax.swing.SwingUtilities;
 
-class Controller implements MouseListener
+class Controller implements MouseListener, KeyListener
 {
     Model model;
     View view;
@@ -35,6 +38,17 @@ class Controller implements MouseListener
     public void mouseExited(MouseEvent e) {    }
     public void mouseClicked(MouseEvent e) {    }
 
+    public void keyTyped(KeyEvent e) 
+    {    
+    	if( e.getKeyChar() == 'n' )
+    	{
+    		System.out.print("Robbers captured: " + RobberCar.numCaptured + " ");
+    		System.out.println("Robbers escaped: " + RobberCar.numEscaped );
+    	}
+    }
+    public void keyPressed(KeyEvent e) {    }
+    public void keyReleased(KeyEvent e) {    }
+    
     public static void main(String[] args) throws Exception {
         //  Use the following line to determine which directory your program
         //  is being executed from, since that is where the image files will
