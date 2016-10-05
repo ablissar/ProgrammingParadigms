@@ -45,10 +45,17 @@ class Controller implements MouseListener, KeyListener
     		System.out.print("Robbers captured: " + RobberCar.numCaptured + " ");
     		System.out.println("Robbers escaped: " + RobberCar.numEscaped );
     	}
+    	
     	if( e.getKeyChar() == 'r' )
     	{
     		model.initialize();
     		view.repaint();
+    	}
+    	
+    	if( e.getKeyChar() == 's' )
+    	{
+    		Thread thread = new Thread( new SpriteMover(model, view) );
+    		thread.start();
     	}
     }
     public void keyPressed(KeyEvent e) {    }
@@ -62,4 +69,3 @@ class Controller implements MouseListener, KeyListener
         new Controller();
     }
 }
-

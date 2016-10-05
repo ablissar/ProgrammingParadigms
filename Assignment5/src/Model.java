@@ -15,10 +15,13 @@ class Model
 
     public void update(Graphics g) 
     {
-		for( Sprite sprite : sprites)
-		{
-			sprite.updateImage(g);
-		}
+    	synchronized(sprites)
+    	{
+			for( Sprite sprite : sprites)
+			{
+				sprite.updateImage(g);
+			}
+    	}
     }
     
     public void addSprite(int x, int y)
@@ -40,42 +43,45 @@ class Model
     
     public void updateScene( int width, int height )
     {
-    	for( Sprite sprite : sprites )
+    	synchronized(sprites)
     	{
-    		sprite.updateState( width, height );
-    		
-    		// Iterate over every other sprite in the ArrayList
-    		for ( Sprite sprite2 : sprites )
-    		{
-    			// Check if the sprites are of different types
-    			// and if they overlap
-    			if( (sprite instanceof CopCar)
-    					&& (sprite2 instanceof RobberCar) 
-    					&& sprite.overlaps(sprite2))
-    			{
-    				// If the robber isn't already captured, capture it
-    				if( !((RobberCar)sprite2).isCaptured() )
-    				{
-    					((RobberCar)sprite2).captured();
-    				}
-    			}
-    		}
-    	}
-    	
-    	// If the sprite is a robber car and it's escaped,
-		// remove it from the list
-		Iterator<Sprite> iter = sprites.iterator();
-		while( iter.hasNext() )
-		{
-			Sprite s = iter.next();
-			if( s instanceof RobberCar )
+	    	for( Sprite sprite : sprites )
+	    	{
+	    		sprite.updateState( width, height );
+	    		
+	    		// Iterate over every other sprite in the ArrayList
+	    		for ( Sprite sprite2 : sprites )
+	    		{
+	    			// Check if the sprites are of different types
+	    			// and if they overlap
+	    			if( (sprite instanceof CopCar)
+	    					&& (sprite2 instanceof RobberCar) 
+	    					&& sprite.overlaps(sprite2))
+	    			{
+	    				// If the robber isn't already captured, capture it
+	    				if( !((RobberCar)sprite2).isCaptured() )
+	    				{
+	    					((RobberCar)sprite2).captured();
+	    				}
+	    			}
+	    		}
+	    	}
+	    	
+	    	// If the sprite is a robber car and it's escaped,
+			// remove it from the list
+			Iterator<Sprite> iter = sprites.iterator();
+			while( iter.hasNext() )
 			{
-				if( ((RobberCar)s).isEscaped() )
+				Sprite s = iter.next();
+				if( s instanceof RobberCar )
 				{
-					iter.remove();
+					if( ((RobberCar)s).isEscaped() )
+					{
+						iter.remove();
+					}
 				}
 			}
-		}
+    	}
     }
     
     public void initialize()
