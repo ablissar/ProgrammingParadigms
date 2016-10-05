@@ -29,15 +29,16 @@ public class RobberCar extends Car
 	
 	public void updateState( int height, int width )
 	{
+		// Car should only move if it hasn't been captured
 		if(!isCaptured)
 		{
 			drive( 4, xRatio, yRatio );
 		}
 		
-		if( (getX() < -60
-				|| getX() > width
-				|| getY() < -60
-				|| getY() > height)
+		// Checks to see whether entire image has left the screen
+		// If it has, set it to "escaped"
+		if( (getX() < -60 || getX() > width
+				|| getY() < -60 || getY() > height)
 				&& !isEscaped )
 		{
 			numEscaped++;

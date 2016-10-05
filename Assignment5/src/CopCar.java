@@ -26,16 +26,17 @@ public class CopCar extends Car
 	public void updateState( int width, int height )
 	{
 		// Use the width and height values for the window to set posX and posY
-		if( getX() > width - 40 || getX() < 5 )
+		if( getX() > width - 60 || getX() < 0 )
 		{
 			posX = !posX;
 		}
-		if( getY() > height - 75 || getY() < 10 ) 
+		if( getY() > height - 60 || getY() < 0 ) 
 		{
 			posY = !posY;
 		}
 
-		// Use posX and posY variables to determine whether the movement should be positive or negative
+		// Use posX and posY variables to determine whether the movement
+		// should be positive or negative
 		if( posX )
 		{
 			if( posY ) drive( 2, xRatio, yRatio );

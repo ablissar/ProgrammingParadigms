@@ -35,22 +35,16 @@ class Sprite
 	
 	public void updateImage(Graphics g) 
 	{
-        // Move the sprite
-		//locationX = locationX + 1;
-		//locationY = locationY + 1;
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
 	}
 	
 	
-	public void updateState( int width, int height )
-	{	
-	}
+	public void updateState( int width, int height ) {    }
 	
 	public boolean overlaps( Sprite s )
 	{
-		return (getX() < s.getX() + 60) 
-				&& getX() + 60 > s.getX()
-				&& getY() < s.getY() + 60
-				&& getY() + 60 > s.getY();
+		// If any of these conditions are false, the sprites don't overlap
+		return (getX() < s.getX() + 60) && getX() + 60 > s.getX()
+				&& getY() < s.getY() + 60 && getY() + 60 > s.getY();
 	}
 }

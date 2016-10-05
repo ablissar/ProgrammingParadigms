@@ -39,20 +39,25 @@ class Controller implements MouseListener, KeyListener
     public void mouseClicked(MouseEvent e) {    }
 
     public void keyTyped(KeyEvent e) 
-    {    
-    	if( e.getKeyChar() == 'n' )
+    {   
+    	// On keypress 'n', print the number of robbers who have been captured 
+    	// and who have escaped
+    	if( e.getKeyChar() == 'n' || e.getKeyChar() == 'N' )
     	{
     		System.out.print("Robbers captured: " + RobberCar.numCaptured + " ");
     		System.out.println("Robbers escaped: " + RobberCar.numEscaped );
     	}
     	
-    	if( e.getKeyChar() == 'r' )
+    	// On keypress 'r', reset program (empty sprite list, reset counters for caputred/escaped
+    	// robbers, redraw image)
+    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' )
     	{
     		model.initialize();
     		view.repaint();
     	}
-    	
-    	if( e.getKeyChar() == 's' )
+    
+    	// On keypress 's', create new thread
+    	if( e.getKeyChar() == 's' || e.getKeyChar() == 'S' )
     	{
     		Thread thread = new Thread( new SpriteMover(model, view) );
     		thread.start();
