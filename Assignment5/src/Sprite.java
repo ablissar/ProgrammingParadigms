@@ -43,7 +43,14 @@ class Sprite
 	
 	
 	public void updateState( int width, int height )
+	{	
+	}
+	
+	public boolean overlaps( Sprite s )
 	{
-		
+		return (getX() < s.getX() + 60) 
+				&& getX() + 60 > s.getX()
+				&& getY() < s.getY() + 60
+				&& getY() + 60 > s.getY();
 	}
 }
