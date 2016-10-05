@@ -7,6 +7,9 @@ public class RobberCar extends Car
 	private int xRatio;
 	private int yRatio;
 	
+	private boolean isCaptured = false;
+	static int numCaptured = 0;
+	
 	public RobberCar()
 	{
 		super("robberCar", 5000, new Engine( "robberEngine", 20, 50 ), "red-car.jpg" );
@@ -23,6 +26,21 @@ public class RobberCar extends Car
 	
 	public void updateState( int height, int width )
 	{
-		drive( 40, xRatio, yRatio );
+		if (!isCaptured)
+		{
+			drive( 40, xRatio, yRatio );
+		}
+	}
+	
+	public void captured()
+	{
+		isCaptured = true;
+		numCaptured++;
+		setImage("jail.jpg");
+	}
+	
+	public boolean isCaptured()
+	{
+		return isCaptured;
 	}
 }

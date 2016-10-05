@@ -47,9 +47,12 @@ class Model
     		{
     			if( (sprite instanceof CopCar)
     					&& (sprite2 instanceof RobberCar) 
-    					&& sprite.overlaps(sprite2) )
+    					&& sprite.overlaps(sprite2))
     			{
-    				System.out.println("Gotcha!");
+    				if( !((RobberCar)sprite2).isCaptured() )
+    				{
+    					((RobberCar)sprite2).captured();
+    				}
     			}
     		}
     	}
