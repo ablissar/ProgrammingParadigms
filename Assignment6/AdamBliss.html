@@ -1,11 +1,80 @@
 <!DOCTYPE HTML>
-<html>
+<title> Adam Bliss's Page</title>
 <style>
-body {
-	background-color: #628ed6
-}
+	header {
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		background-color:gray;
+		padding:0;
+		margin:0;
+	}
+	body {
+		background-color:#d9dde2;
+		padding-top:75px;
+	}
+	p {
+		text-indent:20px;
+		width:50%;
+		padding-left:5px;
+	}
+	p.question {
+		text-indent:0;
+		width:50%;
+		padding-left:5px;
+	}
+	#questions {
+		width:50%;
+	}
 </style>
 
-<title> Adam Bliss's Page </title>
-<h1> Adam Bliss's Page </h1>
+<script>
+	function answerQuestion(answerID, answer) {
+		document.getElementById(answerID).innerHTML = answer;
+	}
+	
+	function clearAnswers() {
+		var answers = document.getElementsByClassName("answer");
+		for( var i = 0; i < answers.length; i++ ) {
+			answers[i].innerHTML = "";
+		}
+	}
+</script>
+
+<html>
+	<header>
+		<h1 style="text-align:center"> Adam Bliss's Page </h1>
+	</header>
+	<body>
+		<div id="intro">
+		<p> The following is a simple quiz about Western movies. This quiz will test your knowledge
+			of great Western movies, both modern and classic. 
+		<p> For a helpful list of great Westerns, see here: 
+			<a target="_blank" href="https://www.rottentomatoes.com/top/bestofrt/top_100_western_movies/"> Top 100 Western Movies </a>
+			<br> <br>
+		</div>
+		
+		<div id="questions">
+		<p class="question"> 1. Who played the titular Butch Cassidy in the 1969 film, Butch Cassidy and the Sundance Kid?
+		<p><button onclick="answerQuestion('a1','Incorrect')"> Robert Redford </button>
+		<p><button onclick="answerQuestion('a1','Correct')"> Paul Newman </button>
+		<p><button onclick="answerQuestion('a1','Incorrect')"> Steve McQueen </button>
+		<p id="a1" class="answer">  </p>
+		
+		<p class="question"> 2. Which of the following images is of the progtagonist (Man with No Name) of Sergio Leone's The Good, the Bad, and the Ugly?
+		<p><img src="image01.jpg" onclick="answerQuestion('a2','Correct')" width=50%> 
+		<p><img src="image02.jpg" onclick="answerQuestion('a2','Incorrect')" width=50%>
+		<p><img src="image03.jpg" onclick="answerQuestion('a2','Incorrect')" width=50%>
+		<p id="a2" class="answer">  </p>
+		
+		<p class="question"> 3. This movie, originally premiered in 1969 and rebooted in 2010, was based off of a novel with the same name written by an Arkansas native, Charles Portis. What is it?
+		<p><button onclick="answerQuestion('a3','Correct')"> True Grit </button>
+		<p><button onclick="answerQuestion('a3','Incorrect')"> A Fistful of Dollars </button>
+		<p><button onclick="answerQuestion('a3','Incorrect')"> Django Unchained </button>
+		<p id="a3" class="answer">  </p>
+		</div>
+		
+		<p><button onclick="clearAnswers()"> Reset </button>
+	</body>
 </html>
