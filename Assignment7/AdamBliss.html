@@ -1,44 +1,167 @@
 <!DOCTYPE html>
 
 <html>
-<style>
-	header {
-		position:absolute;
-		left:0;
-		top:0;
-		width:100%;
-		background-color:gray;
-		text-align:center;
-	}
-	body {
-		background-color:#d9dde2;
-		padding-top:100px;
-	}
-	label, input {
-		margin-bottom: 20px;		
-		display: block;
-	}
-
-</style>
+<head>
+	<title> Adam Bliss's Assignment 7 </title>
+	<style>
+		header {
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			background-color:gray;
+			text-align:center;
+		}
+		body {
+			background-color:#d9dde2;
+			padding-top:100px;
+		}
+		label, input {
+			margin-bottom: 20px;
+			display: block;
+		}
+	
+	</style>
+</head>
 
 <script>
+	var car
+
 	function createCar() {
-		var engineDescription = document.getElementById('engineDescription').value;
-		var mpg = document.getElementById('mpg').value;
-		var maxSpeed = document.getElementById('maxSpeed').value;
-		var carDescription = document.getElementById('carDescription').value;
-		var capacity = document.getElementById('capacity').value;
+		var engineDescription = document.getElementById('engineDescription').value
+		var mpg = Number(document.getElementById('mpg').value)
+		var maxSpeed = Number(document.getElementById('maxSpeed').value)
+		var carDescription = document.getElementById('carDescription').value
+		var capacity = Number(document.getElementById('capacity').value)
 		
-		console.log(engineDescription);
-		console.log(mpg);
-		console.log(maxSpeed);
-		console.log(carDescription);
-		console.log(capacity);
-		return false;
+		var engine = new Engine(engineDescription, mpg, maxSpeed)
+		car = new Car(carDescription, capacity, engine);
+		car.fillUp();
+		
+		document.getElementById("output1").innerHTML = car.getDescription()
+		document.getElementById("driveCar").style.visibility='visible'
+		
+		return false
 	}
+	
+	function driveCar() {
+
+        var distance = Number(document.getElementById("distance").value)
+        var xRatio = Number(document.getElementById("xRatio").value)
+        var yRatio = Number(document.getElementById("yRatio").value)
+
+        car.drive(distance, xRatio, yRatio)
+
+        document.getElementById("output2").innerHTML = car.getDescription()
+
+        return false
+    }
+	
+	function Car(m_description, m_capacity, m_engine) {
+	    var m_xPos = 0
+	    var m_yPos = 0
+	    
+	    m_description = (m_description.length > 0) ? m_description : "Generic car"
+	    var m_tank = new GasTank(m_capacity)
+
+	    this.getDescription = function() {
+            return m_description + " (engine: " + m_engine.getDescription() + "), fuel: " +
+                m_tank.getFuelLevel().toFixed(2) + "/" + m_tank.getCapacity().toFixed(2) + ", location: (" +
+                m_xPos.toFixed(2) + "," + m_yPos.toFixed(2) + ")"
+        }
+
+        this.getX = function() {
+            return m_xPos
+        }
+
+        this.getY = function() {
+            return m_yPos
+        }
+
+        this.fillUp = function() {
+            m_tank.fillUp()
+        }
+
+        this.getMPG = function() {
+            return m_engine.getMPG()
+        }
+
+        this.getFuelLevel = function() {
+            return m_tank.getFuelLevel()
+        }
+
+        this.getMaxSpeed = function() {
+            return m_engine.getMaxSpeed()
+        }
+	    
+        this.drive = function(distance, xRatio, yRatio) {
+            if (distance < 0) {
+                distance *= -1
+            }
+
+            var maxDriveableDistance = m_tank.getFuelLevel() * m_engine.getMPG()
+            var distanceToTravel = distance
+
+            if (maxDriveableDistance <= distance) {
+                distanceToTravel = maxDriveableDistance
+                alert("Ran out of gas after driving " + Math.round(distanceToTravel, 2) + " miles.")
+            }
+
+            var hypotenuseLength = Math.sqrt(xRatio*xRatio + yRatio*yRatio)
+
+            m_xPos += (distanceToTravel / hypotenuseLength) * xRatio
+            m_yPos += (distanceToTravel / hypotenuseLength) * yRatio
+
+            var currentLevel = m_tank.getFuelLevel()
+            var decrementLevel = distance / m_engine.getMPG()
+            m_tank.setFuelLevel(currentLevel - decrementLevel)
+
+            return distanceToTravel
+        }
+	}
+	
+	function Engine(m_description, m_mpg, m_maxSpeed) {
+        m_description = (m_description.length > 0) ? m_description : "Generic engine"
+
+        m_mpg = (m_mpg >= 0) ? m_mpg : 0
+        m_maxSpeed = (m_maxSpeed >= 0) ? m_maxSpeed : 0
+
+        this.getDescription = function() {
+            return m_description
+        }
+
+        this.getMPG = function() {
+            return m_mpg
+        }
+
+        this.getMaxSpeed = function() {
+            return m_maxSpeed
+        }
+    }
+	
+	function GasTank(m_capacity) {
+        m_capacity = (m_capacity >= 0) ? m_capacity : 0
+        var m_level = 0.0
+
+        this.getFuelLevel = function() {
+            return m_level
+        }
+
+        this.getCapacity = function() {
+            return m_capacity
+        }
+
+        this.fillUp = function() {
+            m_level = m_capacity
+        }
+
+        this.setFuelLevel = function(m_fuel) {
+            m_level = m_fuel
+        }
+    }
+
 </script>
 
-<title> Adam Bliss's Assignment 7 </title>
 <header>
 	<h1> Adam Bliss's Assignment 7 </h1>
 </header>
@@ -50,7 +173,16 @@
 		<label> Max Speed (MPH): <input type="text" name="maxSpeed" id="maxSpeed" value="100"> </label>
 		<label> Car Description: <input type="text" name="carDescription" id="carDescription" value="TestCar"> </label>
 		<label> Max Fuel Capacity (Gallons): <input type="text" name="capacity" id="capacity" value="20"> </label> 
+		<label><input type="button" onclick="createCar()" value="Create Car"> </label>
 	</form>
-	<button form="newCar" onclick="createCar()"> Submit </button>
+	<p id="output1" >
+	
+	<form id="driveCar" style="visibility:hidden">
+        <label> Distance (miles): <input type="text" id="distance" value="50"> </label>
+        <label> X ratio: <input type="text" id="xRatio" value="1.0">  </label>
+        <label> Y ratio: <input type="text" id="yRatio" value="1.0"> </label>
+        <label> <input type="button" onclick="driveCar()" value="Drive Car"> </label>
+    </form>
+    <p id="output2">
 </body>
 </html>
