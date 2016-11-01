@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+<style>
+	header {
+		position:absolute;
+		left:0;
+		top:0;
+		width:100%;
+		background-color:gray;
+		text-align:center;
+	}
+	body {
+		background-color:#d9dde2;
+		padding-top:100px;
+	}
+	label, input {
+		margin-bottom: 20px;		
+		display: block;
+	}
+
+</style>
+
+<script>
+	function createCar() {
+		var engineDescription = document.getElementById('engineDescription').value;
+		var mpg = document.getElementById('mpg').value;
+		var maxSpeed = document.getElementById('maxSpeed').value;
+		var carDescription = document.getElementById('carDescription').value;
+		var capacity = document.getElementById('capacity').value;
+		
+		console.log(engineDescription);
+		console.log(mpg);
+		console.log(maxSpeed);
+		console.log(carDescription);
+		console.log(capacity);
+		return false;
+	}
+</script>
+
+<title> Adam Bliss's Assignment 7 </title>
+<header>
+	<h1> Adam Bliss's Assignment 7 </h1>
+</header>
+
+<body>
+	<form id="newCar">
+		<label> Engine Description: <input type="text" name="engineDescription" id="engineDescription" value="TestEngine"> </label>
+		<label> Miles per Gallon: <input type="text" name="mpg" id="mpg" value="25"> </label>
+		<label> Max Speed (MPH): <input type="text" name="maxSpeed" id="maxSpeed" value="100"> </label>
+		<label> Car Description: <input type="text" name="carDescription" id="carDescription" value="TestCar"> </label>
+		<label> Max Fuel Capacity (Gallons): <input type="text" name="capacity" id="capacity" value="20"> </label> 
+	</form>
+	<button form="newCar" onclick="createCar()"> Submit </button>
+</body>
+</html>
