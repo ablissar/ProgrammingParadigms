@@ -60,6 +60,21 @@ function findMin(a) {
 	//  the recursive function) and it must not use more than one parameter.
 	//  See http://www.w3schools.com/jsref/jsref_obj_array.asp for useful
 	//  array functions in JavaScript.
+	
+	// Base case
+	if (a.length == 1) {
+		return a[0];
+	}
+
+	// Compare first element to rest of array
+	// If first element is smaller, return that
+	if (a[0] < findMin(a.slice(1, a.length)) ) {
+		return a[0];
+	}
+	// Else, call findMin() on rest of array
+	else {
+		return findMin(a.slice(1, a.length));
+	}
 }
 
 function stringFromArrays(arr1, arr2) {
@@ -76,6 +91,22 @@ function stringFromArrays(arr1, arr2) {
 	//  the recursive function) and it must not use more than one parameter.
 	//  See http://www.w3schools.com/jsref/jsref_obj_array.asp for useful
 	//  array functions in JavaScript.
+	
+	// Base case, return with the element in arr1 added to element in arr2
+	if(arr1.length == 1 || arr2.length == 1) {
+		return arr1.concat(arr2);
+	}
+	
+	// Similar to reverseArray
+	// Save first and last elements
+	var firstArr1 = arr1[0];
+	var firstArr2 = arr2[0];
+	
+	// Then call stringFromArrays() with both arrays reduced by one
+	var returnString = stringFromArrays(arr1.slice(1, arr1.length), arr2.slice(1, arr2.length));
+	
+	// Join the first elements of both arrays to the returnString, then use .join() to format
+	return [arr1[0]].concat([arr2[0]].concat(returnString)).join('');
 }
 
 
