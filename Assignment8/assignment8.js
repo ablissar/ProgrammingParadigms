@@ -167,6 +167,16 @@ function computeMaxArr(f1, f2) {
 	//  Example: Given the definitions of add2 and mult4 at the bottom of
 	//  this page, if var fx = computeMaxArr(add2, mult4), then
 	//  fx([-3,-2,-1,0,1,2,3]) = -1,0,1,2,4,8,12
+    
+    function result(arr) {
+        if(arr.length == 1) {
+            return [(f1(arr[0]) > f2(arr[0])) ? f1(arr[0]) : f2(arr[0])];
+        }
+
+        return result([arr[0]]).concat(result(arr.slice(1)));
+    }
+
+    return result;
 }
 
 
@@ -201,6 +211,26 @@ function makeClosure() {
 	//  outStr = funcs[0](5, 6) + "<br>";			// outStr will equal "3, 7, 11"
 	//  funcs[1]();									// counter will now equal 3
 	//  outStr = funcs[0](7, 8) + "<br>";			// outStr will equal "3, 7, 11"
+
+    var counter = 0;
+    var arr = [];
+
+    var returnFunc = [2];
+
+    function func1(arg1, arg2) {
+        if( counter < 3 ) {
+            arr.push(arg1 + arg2);
+        }
+        return arr;
+    }
+
+    function func2() {
+        counter++;
+    }
+
+    returnFunc[0] = func1;
+    returnFunc[1] = func2;
+    return returnFunc;
 }
 
 ////////////////////////////////////////////////////////////
