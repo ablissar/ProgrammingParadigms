@@ -2,7 +2,7 @@
 //  CSCE 3193
 //  Fall 2016
 //  Assignment 8
-//  Name:
+//  Name: Adam Bliss
 ////////////////////////////////////////////////////////////
 
 
@@ -24,6 +24,27 @@ function reverseArray(arr) {
 	//  THIS FUNCTION MUST USE RECURSION OR 60% WILL BE DEDUCTED.  Also, for
 	//  full credit you must not define inner functions (i.e. reverseArray must
 	//  be the recursive function) and it must not use more than one parameter.
+	
+	
+	var n = arr.length;
+	// Terminating condition
+	if (n < 2) {
+		return arr;
+	}
+	
+	// Save first and last elements of array
+	var first = arr[0];
+	var last = arr[n-1];
+
+	// Recursive call with array, minus first and last elements
+	var returnArr = reverseArray(arr.slice(1, n-1));
+	
+	// Add first and last elemtns back on, switched
+	returnArr.unshift(last);
+	returnArr.push(first);
+	
+	// Return finished array
+	return returnArr;
 }
 
 function findMin(a) {
