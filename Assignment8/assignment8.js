@@ -27,7 +27,7 @@ function reverseArray(arr) {
 	
 	
 	var n = arr.length;
-	// Terminating condition
+    // Base case
 	if (n < 2) {
 		return arr;
 	}
@@ -132,6 +132,19 @@ function applyToArray(a) {
 	//  returns [3,4,5,6], if var f2 = applyToArray([10,-20,8,0]),
 	//  f2(mult4) returns [40,-80,32,0], and if var f3 = applyToArray([]),
 	//  f3(add2) returns []
+    
+    // Define function to return
+    return function (f) {
+        // Temp array to store results
+        var b = [];
+        for (elem of a) {
+            // For each element of a, apply f() to it
+            // and push it to b
+            b.push(f(elem));
+        }
+        // Return resulting array
+        return b;
+    }
 }
 
 function computeMaxArr(f1, f2) {
