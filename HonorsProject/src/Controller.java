@@ -24,7 +24,6 @@ class Controller implements MouseListener, KeyListener
     public void mousePressed(MouseEvent e) {
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			// Gets here is left mouse button was clicked
-			model.addSprite( e.getX(), e.getY() );
 			view.repaint();
 		} else if (SwingUtilities.isRightMouseButton(e))  {
 			// Gets here if right mouse button was clicked
