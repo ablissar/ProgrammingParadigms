@@ -49,7 +49,7 @@ function validateForm1() {
     <p> Answer was incorrect. Please guess again. </p>
     <form name="form3" action="assignment10.php" method="post">
       <input type="text" name="guess" />
-      <input type="hidden" name="answer" value=<?php $_POST['answer'] ?> />
+      <input type="hidden" name="answer" value="<?php echo($_POST['answer'])?>" />
       <?php echo($_POST['answer']); ?>
       <input type="submit" />
     </form>
