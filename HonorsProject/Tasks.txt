@@ -1,0 +1,10 @@
+1. Fix token movement
+    - Randomness
+    - Boundary control
+
+2. Implement bucket class
+    - Stationary
+    - If player overlaps bucket:
+        - Display score
+        - Reset score counters
+        - Reset tokens
