@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Token extends Sprite {
 
 	private int moveCounter;
-	private double randDirChange;
+	private int randDirChange;
 	boolean isRemoved = false;
 	static int numRemoved = 0;
 	private Direction currentDir;
@@ -16,7 +16,7 @@ public class Token extends Sprite {
 		setY( (int)(Math.random()*600) );
 		setSpeed(5);
 		moveCounter = 0;
-		randDirChange = Math.random() * 50;
+		randDirChange = (int)(Math.random() * 75)+1;
 		currentDir = randDir();
 	}
 
@@ -67,7 +67,7 @@ public class Token extends Sprite {
 	
 	// Generates a random direction for tokens to use
     public Direction randDir() {
-    	switch((int)Math.random() * 8) {
+    	switch( (int)(Math.random() * 8) ) {
     	case 0:
     		return Direction.UP;
     	case 1:
