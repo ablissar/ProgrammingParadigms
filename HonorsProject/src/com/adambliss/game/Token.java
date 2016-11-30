@@ -10,10 +10,10 @@ public class Token extends Sprite {
 	static int numRemoved = 0;
 	private Direction currentDir;
 	
-	public Token(int x, int y) {
-		super("token.jpeg");
-		setX(x);
-		setY(y);
+	public Token() {
+		super("token.png");
+		setX( (int)(Math.random()*300) );
+		setY( (int)(Math.random()*300) );
 		moveCounter = 0;
 		randDirChange = Math.random() * 50;
 	}

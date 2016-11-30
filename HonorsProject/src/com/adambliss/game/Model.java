@@ -7,8 +7,8 @@ import java.util.*;
 class Model
 {
     private ArrayList<Token> tokens = new ArrayList<>();
-    private Player player = new Player();
-	int i = 0;
+    private Player player;
+	int numTokens = 15;
 	
 	public static enum Direction {
 		UP, LEFT, RIGHT, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT, NONE
@@ -16,14 +16,20 @@ class Model
 
     Model() throws IOException 
     {
-    	// Reset player 
-    	player.setX(0);
-    	player.setY(0);
+    	// Add player
+    	player = new Player();
+    	
+    	// Add tokens
+    	for(int i = 0; i < numTokens; i++) {
+    		tokens.add(new Token());
+    		//System.out.println(tokens.get(tokens.size()-1).getX());
+    		//System.out.println(tokens.get(tokens.size()-1).getY());
+    	}
     }
 
     public void update(Graphics g) 
     {
-    	// Update image for every sprite in list
+    	// Update image for every token (and the player)
     	synchronized(tokens)
     	{
 			for( Token token : tokens)
@@ -50,17 +56,25 @@ class Model
     	}
     }
     
+    // Function to move player sprite
+    // Takes in direction, moves player in given direction.
+    // Direction comes from controller (key input)
     public void movePlayer( Direction dir ) {
     	player.moveSprite(dir);
     }
     
+    // Function to move token sprites
     public void moveTokens() {
+    	// For each token, if the token is ready to change direction,
+    	// set its direction to something random.
+    	// Move it in that new direction, then increment the move counter.
     	for( Token token : tokens ) {
     		if( token.dirChange() ) {
     			token.setDir( randDir() );
     			token.moveSprite( token.getDir() );
     			token.addMove();
     		}
+    		// Otherwise, move it in the same direction and increment counter.
     		else {
     			token.moveSprite( token.getDir() );
     			token.addMove();
@@ -68,6 +82,7 @@ class Model
     	}
     }
     
+    // Generates a random direction for tokens to use
     public Direction randDir() {
     	switch((int)Math.random() * 8) {
     	case 0:
@@ -93,8 +108,6 @@ class Model
     public void initialize()
     {
     	tokens.clear();
-    	//sprites.add( new Bank() );
-    	//RobberCar.numCaptured = 0;
-    	//RobberCar.numEscaped = 0;
+    	player = new Player();
     }
 }
