@@ -1,3 +1,4 @@
+package com.adambliss.game;
 import java.awt.Graphics;
 import java.util.Random;
 

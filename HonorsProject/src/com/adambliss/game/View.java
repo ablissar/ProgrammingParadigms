@@ -1,3 +1,4 @@
+package com.adambliss.game;
 import javax.swing.JFrame;
 import java.awt.Graphics;
 import javax.swing.JPanel;

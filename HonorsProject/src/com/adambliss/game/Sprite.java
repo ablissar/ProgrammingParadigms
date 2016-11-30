@@ -1,3 +1,4 @@
+package com.adambliss.game;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.imageio.ImageIO;
@@ -63,4 +64,5 @@ class Sprite
 			setY(0);
 		}
 	}
+	
 }

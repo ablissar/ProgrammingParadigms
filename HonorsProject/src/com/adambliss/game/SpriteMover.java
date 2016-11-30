@@ -1,3 +1,4 @@
+package com.adambliss.game;
 
 public class SpriteMover implements Runnable
 {
