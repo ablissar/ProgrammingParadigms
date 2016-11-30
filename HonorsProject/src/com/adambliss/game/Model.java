@@ -7,7 +7,7 @@ import java.util.*;
 class Model
 {
     private ArrayList<Token> tokens = new ArrayList<>();
-    Player player = new Player();
+    private Player player = new Player();
 	int i = 0;
 	
 	public static enum Direction {
@@ -50,39 +50,44 @@ class Model
     	}
     }
     
-    public void movePlayer(Direction dir) {
-    	switch(dir) {
-    	case UP:
-    		player.setY(player.getY()-player.speed);
-    		break;
-    	case DOWN:
-    		player.setY(player.getY()+player.speed);
-    		break;
-    	case LEFT:
-    		player.setX(player.getX()-player.speed);
-    		break;
-    	case RIGHT:
-    		player.setX(player.getX()+player.speed);
-    		break;
-    	case UP_LEFT:
-    		player.setX( (int) (player.getX()-(player.speed / Math.sqrt(2))) );
-    		player.setY( (int) (player.getY()-(player.speed / Math.sqrt(2))) );
-    		break;
-    	case UP_RIGHT:
-    		player.setX( (int) (player.getX()+(player.speed / Math.sqrt(2))) );
-    		player.setY( (int) (player.getY()-(player.speed / Math.sqrt(2))) );
-    		break;
-    	case DOWN_LEFT:
-    		player.setX( (int) (player.getX()-(player.speed / Math.sqrt(2))) );
-    		player.setY( (int) (player.getY()+(player.speed / Math.sqrt(2))) );
-    		break;
-    	case DOWN_RIGHT:
-    		player.setX( (int) (player.getX()+(player.speed / Math.sqrt(2))) );
-    		player.setY( (int) (player.getY()+(player.speed / Math.sqrt(2))) );
-    		break;
-    	case NONE:
-    		break;
+    public void movePlayer( Direction dir ) {
+    	player.moveSprite(dir);
+    }
+    
+    public void moveTokens() {
+    	for( Token token : tokens ) {
+    		if( token.dirChange() ) {
+    			token.setDir( randDir() );
+    			token.moveSprite( token.getDir() );
+    			token.addMove();
+    		}
+    		else {
+    			token.moveSprite( token.getDir() );
+    			token.addMove();
+    		}
     	}
+    }
+    
+    public Direction randDir() {
+    	switch((int)Math.random() * 8) {
+    	case 0:
+    		return Direction.UP;
+    	case 1:
+    		return Direction.DOWN;
+    	case 2:
+    		return Direction.LEFT;
+    	case 3:
+    		return Direction.RIGHT;
+    	case 4:
+    		return Direction.DOWN_LEFT;
+    	case 5:
+    		return Direction.DOWN_RIGHT;
+    	case 6:
+    		return Direction.UP_LEFT;
+    	case 7:
+    		return Direction.UP_RIGHT;
+    	}
+    	return Direction.NONE;
     }
     
     public void initialize()

@@ -2,6 +2,9 @@ package com.adambliss.game;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.imageio.ImageIO;
+
+import com.adambliss.game.Model.Direction;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -10,6 +13,7 @@ class Sprite
 {
 	private int locationX;
 	private int locationY;
+	private int speed;
 	private Image image;
 
 	public Sprite(String jpgName)
@@ -65,4 +69,40 @@ class Sprite
 		}
 	}
 	
+	public void moveSprite(Direction dir) {
+    	switch(dir) {
+    	case UP:
+    		setY(getY()-speed);
+    		break;
+    	case DOWN:
+    		System.out.println("pushing up motherfucker");
+    		setY(getY()+speed);
+    		System.out.println(getY());
+    		break;
+    	case LEFT:
+    		setX(getX()-speed);
+    		break;
+    	case RIGHT:
+    		setX(getX()+speed);
+    		break;
+    	case UP_LEFT:
+    		setX( (int) (getX()-(speed / Math.sqrt(2))) );
+    		setY( (int) (getY()-(speed / Math.sqrt(2))) );
+    		break;
+    	case UP_RIGHT:
+    		setX( (int) (getX()+(speed / Math.sqrt(2))) );
+    		setY( (int) (getY()-(speed / Math.sqrt(2))) );
+    		break;
+    	case DOWN_LEFT:
+    		setX( (int) (getX()-(speed / Math.sqrt(2))) );
+    		setY( (int) (getY()+(speed / Math.sqrt(2))) );
+    		break;
+    	case DOWN_RIGHT:
+    		setX( (int) (getX()+(speed / Math.sqrt(2))) );
+    		setY( (int) (getY()+(speed / Math.sqrt(2))) );
+    		break;
+    	case NONE:
+    		break;
+    	}
+    }
 }
