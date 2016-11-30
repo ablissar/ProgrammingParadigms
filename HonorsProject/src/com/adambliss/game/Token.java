@@ -12,34 +12,30 @@ public class Token extends Sprite {
 	
 	public Token() {
 		super("token.png");
-		setX( (int)(Math.random()*300) );
-		setY( (int)(Math.random()*300) );
+		setX( (int)(Math.random()*600) );
+		setY( (int)(Math.random()*600) );
+		setSpeed(5);
 		moveCounter = 0;
 		randDirChange = Math.random() * 50;
+		currentDir = randDir();
 	}
 
-	public void addMove() {
-		moveCounter++;
+	public void addMove() { moveCounter++; }
+	
+	public void setDir(Direction dir) { 
+		currentDir = dir; 
 	}
 	
-	public void setDir(Direction dir) {
-		currentDir = dir;
+	public Direction getDir() { 
+		return currentDir; 
 	}
 	
-	public Direction getDir() {
-		return currentDir;
-	}
-	
-	public boolean dirChange() {
-		return (moveCounter % randDirChange == 0);
+	public boolean dirChange() { 
+		return (moveCounter % randDirChange == 0); 
 	}
 	
 	public void updateImate( Graphics g ) {
 		super.updateImage(g);
-	}
-	
-	public void updateState( int width, int height ) {
-		inBounds(width, height);
 	}
 	
 	public void removed() {
@@ -50,4 +46,45 @@ public class Token extends Sprite {
 	public boolean isRemoved() {
 		return isRemoved;
 	}
+	
+	public void updateState( int width, int height ) {
+		inBounds(width, height);
+	
+    	// For each token, if the token is ready to change direction,
+    	// set its direction to something random.
+    	// Move it in that new direction, then increment the move counter.
+		if( dirChange() ) {
+			setDir( randDir() );
+			moveSprite( getDir() );
+			addMove();
+		}
+		// Otherwise, move it in the same direction and increment counter.
+		else {
+			moveSprite( getDir() );
+			addMove();
+		}
+	}
+	
+	// Generates a random direction for tokens to use
+    public Direction randDir() {
+    	switch((int)Math.random() * 8) {
+    	case 0:
+    		return Direction.UP;
+    	case 1:
+    		return Direction.DOWN;
+    	case 2:
+    		return Direction.LEFT;
+    	case 3:
+    		return Direction.RIGHT;
+    	case 4:
+    		return Direction.DOWN_LEFT;
+    	case 5:
+    		return Direction.DOWN_RIGHT;
+    	case 6:
+    		return Direction.UP_LEFT;
+    	case 7:
+    		return Direction.UP_RIGHT;
+    	}
+    	return Direction.NONE;
+    }
 }

@@ -47,6 +47,7 @@ class Model
 			player.updateState( width, height );
 
 	    		for ( Token token : tokens ) {
+	    			token.updateState( width, height );
 	    			if( player.overlaps(token) )
 	    				// If the token isn't already removed, remove it
 	    				if( !token.isRemoved() ) {
@@ -61,48 +62,6 @@ class Model
     // Direction comes from controller (key input)
     public void movePlayer( Direction dir ) {
     	player.moveSprite(dir);
-    }
-    
-    // Function to move token sprites
-    public void moveTokens() {
-    	// For each token, if the token is ready to change direction,
-    	// set its direction to something random.
-    	// Move it in that new direction, then increment the move counter.
-    	for( Token token : tokens ) {
-    		if( token.dirChange() ) {
-    			token.setDir( randDir() );
-    			token.moveSprite( token.getDir() );
-    			token.addMove();
-    		}
-    		// Otherwise, move it in the same direction and increment counter.
-    		else {
-    			token.moveSprite( token.getDir() );
-    			token.addMove();
-    		}
-    	}
-    }
-    
-    // Generates a random direction for tokens to use
-    public Direction randDir() {
-    	switch((int)Math.random() * 8) {
-    	case 0:
-    		return Direction.UP;
-    	case 1:
-    		return Direction.DOWN;
-    	case 2:
-    		return Direction.LEFT;
-    	case 3:
-    		return Direction.RIGHT;
-    	case 4:
-    		return Direction.DOWN_LEFT;
-    	case 5:
-    		return Direction.DOWN_RIGHT;
-    	case 6:
-    		return Direction.UP_LEFT;
-    	case 7:
-    		return Direction.UP_RIGHT;
-    	}
-    	return Direction.NONE;
     }
     
     public void initialize()

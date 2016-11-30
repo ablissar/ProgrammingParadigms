@@ -22,7 +22,7 @@ public class SpriteMover implements Runnable
 			// Sleep for 2 ms
 			try
 			{
-				Thread.sleep(2);
+				Thread.sleep(10);
 			}
 			catch( InterruptedException e) {}
 		}

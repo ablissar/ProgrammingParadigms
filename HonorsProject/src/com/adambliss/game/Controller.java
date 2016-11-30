@@ -22,6 +22,8 @@ class Controller implements MouseListener, KeyListener
     Controller() throws IOException, Exception {
         model = new Model();
         view = new View(this);
+        Thread thread = new Thread( new SpriteMover(model,view) );
+        thread.start();
     }
 
     public void update(Graphics g) {
@@ -52,14 +54,8 @@ class Controller implements MouseListener, KeyListener
     		model.initialize();
     		view.repaint();
     	}
-    
-    	// On keypress 's', create new thread
-    	if( e.getKeyChar() == 's' || e.getKeyChar() == 'S' )
-    	{
-    		Thread thread = new Thread( new SpriteMover(model, view) );
-    		thread.start();
-    	}
     }
+    
     public void keyPressed(KeyEvent e) {  
     	int keyCode = e.getKeyCode();
         switch( keyCode ) { 
