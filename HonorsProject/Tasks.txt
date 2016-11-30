@@ -1,4 +1,4 @@
-* Add capture function to player/tokens
+* Implement scoring method (numCaptured/timeSinceReset)
 
 * Implement bucket class
     - Stationary
@@ -17,3 +17,4 @@
 
 ===Optional===
 * Streamline player movement
+* Improve token edge handling

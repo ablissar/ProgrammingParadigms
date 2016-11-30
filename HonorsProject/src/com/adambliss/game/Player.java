@@ -3,13 +3,24 @@ import java.awt.Graphics;
 
 public class Player extends Sprite{
 	
+	private int numCaptured;
+	
 	public Player() {
 		super("temp.png");
 		setX(0);
 		setY(0);
 		setSpeed(20);
+		numCaptured = 0;
 	}
 
+	public void setNumCaptured( int numCapturedIn ) {
+		numCaptured = numCapturedIn;
+	}
+	
+	public int getNumCaptured() {
+		return numCaptured;
+	}
+	
 	public void updateImate( Graphics g ) {
 		super.updateImage(g);
 	}

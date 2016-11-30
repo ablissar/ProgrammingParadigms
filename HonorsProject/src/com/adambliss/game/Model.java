@@ -34,7 +34,8 @@ class Model
     	{
 			for( Token token : tokens)
 			{
-				token.updateImage(g);
+				if( !token.isRemoved() )
+					token.updateImage(g);
 			}
 			player.updateImage(g);
     	}
@@ -52,9 +53,11 @@ class Model
 	    				// If the token isn't already removed, remove it
 	    				if( !token.isRemoved() ) {
 	    					token.removed();
+	    					player.setNumCaptured(player.getNumCaptured()+1);
     				}
     			}
     	}
+    	System.out.println(player.getNumCaptured());
     }
     
     // Function to move player sprite
