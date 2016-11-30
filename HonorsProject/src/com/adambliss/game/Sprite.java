@@ -27,6 +27,7 @@ class Sprite
 	public int getY() {	return locationY; }
 	public void setX(int x) { locationX = x; }
 	public void setY(int y) { locationY = y; }
+	public void setSpeed(int speedIn) { speed = speedIn; }
 	
 	public void setImage(String imagePath) 
 	{
@@ -75,9 +76,7 @@ class Sprite
     		setY(getY()-speed);
     		break;
     	case DOWN:
-    		System.out.println("pushing up motherfucker");
     		setY(getY()+speed);
-    		System.out.println(getY());
     		break;
     	case LEFT:
     		setX(getX()-speed);
