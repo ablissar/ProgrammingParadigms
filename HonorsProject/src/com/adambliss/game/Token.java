@@ -47,6 +47,14 @@ public class Token extends Sprite {
 		return isRemoved;
 	}
 	
+	public void inBounds(int width, int height) {
+		// Series of checks to keep player in bounds
+		if( getX() > width - 60 || getX() < 0 ||
+				getY() > height - 60 || getY() < 0) {
+			setDir( randDir() );
+		}
+	}
+	
 	public void updateState( int width, int height ) {
 		inBounds(width, height);
 	

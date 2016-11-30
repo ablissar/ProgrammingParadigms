@@ -54,22 +54,6 @@ class Sprite
 				&& getY() < s.getY() + 60 && getY() + 60 > s.getY();
 	}
 	
-	public void inBounds(int width, int height) {
-		// Series of checks to keep player in bounds
-		if( getX() > width - 60 ) {
-			setX(width - 60);
-		}
-		if( getX() < 0 ) {
-			setX(0);
-		}
-		if( getY() > height - 60 ) {
-			setY(height - 60);
-		}
-		if( getY() < 0 ) {
-			setY(0);
-		}
-	}
-	
 	public void moveSprite(Direction dir) {
     	switch(dir) {
     	case UP:
