@@ -1,10 +1,19 @@
-1. Fix token movement
-    - Randomness
-    - Boundary control
+* Add capture function to player/tokens
 
-2. Implement bucket class
+* Implement bucket class
     - Stationary
     - If player overlaps bucket:
         - Display score
         - Reset score counters
         - Reset tokens
+
+* Add menu bar
+ 
+* Add pause option
+
+* Add instructions
+
+* Add file save
+
+===Optional===
+* Streamline player movement
