@@ -8,6 +8,7 @@ class Model
 {
     private ArrayList<Token> tokens = new ArrayList<>();
     private Player player;
+    private Bucket bucket;
 	int numTokens = 15;
 	
 	public static enum Direction {
@@ -18,12 +19,11 @@ class Model
     {
     	// Add player
     	player = new Player();
+    	bucket = new Bucket();
     	
     	// Add tokens
     	for(int i = 0; i < numTokens; i++) {
     		tokens.add(new Token());
-    		//System.out.println(tokens.get(tokens.size()-1).getX());
-    		//System.out.println(tokens.get(tokens.size()-1).getY());
     	}
     }
 
@@ -38,6 +38,7 @@ class Model
 					token.updateImage(g);
 			}
 			player.updateImage(g);
+			bucket.updateImage(g);
     	}
     }
     
@@ -46,18 +47,23 @@ class Model
     	synchronized(tokens) {
     		// Update player state
 			player.updateState( width, height );
-
-	    		for ( Token token : tokens ) {
-	    			token.updateState( width, height );
-	    			if( player.overlaps(token) )
-	    				// If the token isn't already removed, remove it
-	    				if( !token.isRemoved() ) {
-	    					token.removed();
-	    					player.setNumCaptured(player.getNumCaptured()+1);
-    				}
-    			}
+			
+    		for ( Token token : tokens ) {
+    			token.updateState( width, height );
+    			if( player.overlaps(token) )
+    				// If the token isn't already removed, remove it
+    				if( !token.isRemoved() ) {
+    					token.removed();
+    					player.setNumCaptured(player.getNumCaptured()+1);
+				}
+    		}
+    		
+    		// If player overlaps the bucket, reset numCaptured and report score
+    		if( player.overlaps(bucket) ) {
+    			System.out.println("Captured " + player.getNumCaptured() + " tokens.");
+    			
+    		}
     	}
-    	System.out.println(player.getNumCaptured());
     }
     
     // Function to move player sprite

@@ -24,7 +24,7 @@ public class View extends JFrame implements ActionListener {
 
 
     public View(Controller c) throws Exception{
-        setTitle("Assignment 4");
+        setTitle("Adam Bliss Honors Project");
         setSize(1000, 700);
         getContentPane().add(new MyPanel(c));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -37,20 +37,10 @@ class Controller implements MouseListener, KeyListener
     public void mouseExited(MouseEvent e) {    }
     public void mouseClicked(MouseEvent e) {    }
 
-    public void keyTyped(KeyEvent e) 
-    {   
-    	// On keypress 'n', print the number of robbers who have been captured 
-    	// and who have escaped
-    	if( e.getKeyChar() == 'n' || e.getKeyChar() == 'N' )
-    	{
-    		System.out.print("Robbers captured: ");
-    		System.out.println("Robbers escaped: ");
-    	}
-    	
+    public void keyTyped(KeyEvent e)  {   
     	// On keypress 'r', reset program (empty sprite list, reset counters for captured/escaped
     	// robbers, redraw image)
-    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' )
-    	{
+    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
     		model.initialize();
     		view.repaint();
     	}
