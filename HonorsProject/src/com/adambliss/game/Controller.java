@@ -41,8 +41,18 @@ class Controller implements MouseListener, KeyListener
     	// On keypress 'r', reset program (empty sprite list, reset counters for captured/escaped
     	// robbers, redraw image)
     	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
-    		model.initialize();
-    		view.repaint();
+    		//model.initialize();
+    		//view.repaint();
+    	}
+    	
+    	// Pause the game
+    	if( e.getKeyChar() == 'p' || e.getKeyChar() == 'P' ) {
+    		model.setPaused(true);
+    	}
+    	
+    	// Unpause the game
+    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
+    		model.setPaused(false);
     	}
     }
     
@@ -62,9 +72,11 @@ class Controller implements MouseListener, KeyListener
                 rightPressed = true;
                 break;
         }
-        model.movePlayer(getDirection());
-        model.updateScene( view.getWidth(), view.getHeight() );
-		view.repaint();
+        if( !model.getPaused() ) {
+	        model.movePlayer(getDirection());
+	        model.updateScene( view.getWidth(), view.getHeight() );
+			view.repaint();
+        }
     }
     
     public Direction getDirection() {

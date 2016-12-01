@@ -9,7 +9,16 @@ class Model
     private ArrayList<Token> tokens = new ArrayList<>();
     private Player player;
     private Bucket bucket;
-	int numTokens = 15;
+	private int numTokens = 15;
+	private boolean paused = false;
+	
+	public void setPaused( boolean pausedIn ) {
+		paused = pausedIn;
+	}
+	
+	public boolean getPaused() {
+		return paused;
+	}
 	
 	public static enum Direction {
 		UP, LEFT, RIGHT, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT, NONE
