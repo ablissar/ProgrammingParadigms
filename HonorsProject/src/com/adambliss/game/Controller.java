@@ -41,10 +41,6 @@ class Controller implements MouseListener, KeyListener
     	// Pause/unpause the game
     	if( e.getKeyChar() == 'p' || e.getKeyChar() == 'P' ) {
     		model.switchPaused();
-    	}
-    	
-    	// Display instructions
-    	if( e.getKeyChar() == 'i' || e.getKeyChar() == 'I') {
     		view.switchInstructions();
     	}
     }

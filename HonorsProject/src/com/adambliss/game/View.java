@@ -1,8 +1,11 @@
 package com.adambliss.game;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.border.*;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -48,13 +51,19 @@ public class View extends JFrame implements ActionListener {
         		+ "Try to collect as many tokens as quickly as possible. <br>"
         		+ "Tokens are collected by touching them then touching the bin. <br>"
         		+ "When you touch the bin, your score will be displayed, your position and the tokens will reset. <br>"
-        		+ "Press 'i' to hide instructions."
+        		+ "Press 'p' to resume."
         		+ " </html>");
+        instructions.setOpaque(true);
+        instructions.setBackground(Color.lightGray);
+        //Border used as padding
+        Border paddingBorder = BorderFactory.createEmptyBorder(10,10,10,10);
+
+        instructions.setBorder(paddingBorder);
         instructions.setVisible(false);
         panel.add(instructions);
         
         // JLabel containing hint for displaying instructions
-        instructionHint = new JLabel("Press 'i' to display instructions.");
+        instructionHint = new JLabel("Press 'p' to pause game and display instructions.");
         instructionHint.setHorizontalAlignment(SwingConstants.LEFT);
         instructionHint.setVerticalAlignment(SwingConstants.BOTTOM);
         panel.add(instructionHint);
