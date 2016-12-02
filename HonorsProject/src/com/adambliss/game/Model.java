@@ -12,8 +12,8 @@ class Model
 	private int numTokens = 15;
 	private boolean paused = false;
 	
-	public void setPaused( boolean pausedIn ) {
-		paused = pausedIn;
+	public void switchPaused () {
+		paused = !paused;
 	}
 	
 	public boolean getPaused() {

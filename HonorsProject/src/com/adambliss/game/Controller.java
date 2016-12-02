@@ -38,14 +38,9 @@ class Controller implements MouseListener, KeyListener
     public void mouseClicked(MouseEvent e) {    }
 
     public void keyTyped(KeyEvent e)  {   
-    	// Pause the game
+    	// Pause/unpause the game
     	if( e.getKeyChar() == 'p' || e.getKeyChar() == 'P' ) {
-    		model.setPaused(true);
-    	}
-    	
-    	// Unpause the game
-    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
-    		model.setPaused(false);
+    		model.switchPaused();
     	}
     	
     	// Display instructions
