@@ -1,14 +1,16 @@
 package com.adambliss.game;
 import java.awt.Graphics;
-
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 
-import com.adambliss.game.Model.Direction;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
-import java.awt.event.MouseListener;
-import java.awt.event.KeyListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
+import com.adambliss.game.Model.Direction;
 
 //import javax.swing.SwingUtilities;
 
@@ -18,12 +20,35 @@ class Controller implements MouseListener, KeyListener
     View view;
     
     boolean upPressed, downPressed, leftPressed, rightPressed;
+    
+    JMenuBar menuBar;
+    JMenu menu;
+    JMenuItem menuItem;
 
     Controller() throws IOException, Exception {
         model = new Model();
         view = new View(this);
         Thread thread = new Thread( new SpriteMover(model,view) );
         thread.start();
+        
+        /*
+        menuBar = new JMenuBar();
+
+        //Build the first menu.
+        menu = new JMenu("A Menu");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.getAccessibleContext().setAccessibleDescription(
+                "The only menu in this program that has menu items");
+        menuBar.add(menu);
+
+        //a group of JMenuItems
+        menuItem = new JMenuItem("A text-only menu item",
+                                 KeyEvent.VK_T);
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(
+                KeyEvent.VK_1, ActionEvent.ALT_MASK));
+        menuItem.getAccessibleContext().setAccessibleDescription(
+                "This doesn't really do anything");
+        menu.add(menuItem); */
     }
 
     public void update(Graphics g) {

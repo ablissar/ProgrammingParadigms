@@ -75,7 +75,7 @@ public class View extends JFrame implements ActionListener {
         
         // JLabel containing score
         score = new JLabel("High score: ");
-        //score.setAlignmentX(LEFT_ALIGNMENT);
+        // score.setAlignmentX(LEFT_ALIGNMENT);
         panel.add(score);
         
         getContentPane().add(panel);
