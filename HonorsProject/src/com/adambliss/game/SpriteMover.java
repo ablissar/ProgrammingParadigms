@@ -16,13 +16,16 @@ public class SpriteMover implements Runnable
 			// Update model and redraw view
 			if(!model.getPaused()) {
 				model.updateScene( view.getWidth(), view.getHeight() );
-				view.repaint();
-				// Sleep for 2 ms
+				// Sleep for 10 ms
 				try {
 					Thread.sleep(10);
 				}
 				catch( InterruptedException e) {}
 			}
+			// Note: I don't know why putting something
+			// outside the if() statement causes the 
+			// resume function to work.
+			view.repaint();
 		}
 	}
 }

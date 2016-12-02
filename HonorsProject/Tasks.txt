@@ -1,16 +1,12 @@
 * Implement scoring method (numCaptured/timeSinceReset)
 
 * Implement bucket class
-    - Stationary
-    - If player overlaps bucket:
-        - Display score
-        - Reset score counters
-        - Reset tokens
+    - Display score
+    - Reset score counters
+    - Reset tokens
 
 * Add menu bar
  
-* Add pause option
-
 * Add instructions
 
 * Add file save

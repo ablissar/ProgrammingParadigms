@@ -38,13 +38,6 @@ class Controller implements MouseListener, KeyListener
     public void mouseClicked(MouseEvent e) {    }
 
     public void keyTyped(KeyEvent e)  {   
-    	// On keypress 'r', reset program (empty sprite list, reset counters for captured/escaped
-    	// robbers, redraw image)
-    	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
-    		//model.initialize();
-    		//view.repaint();
-    	}
-    	
     	// Pause the game
     	if( e.getKeyChar() == 'p' || e.getKeyChar() == 'P' ) {
     		model.setPaused(true);

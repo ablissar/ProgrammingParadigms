@@ -16,7 +16,7 @@ public class Token extends Sprite {
 		setY( (int)(Math.random()*600) );
 		setSpeed(5);
 		moveCounter = 0;
-		randDirChange = (int)(Math.random() * 75)+1;
+		randDirChange = (int)(Math.random() * 75)+25;
 		currentDir = randDir();
 	}
 
