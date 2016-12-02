@@ -1,10 +1,3 @@
-* Implement scoring method (numCaptured/timeSinceReset)
-
-* Implement bucket class
-    - Display score
-    - Reset score counters
-    - Reset tokens
-
 * Add menu bar
  
 * Add file save
@@ -16,3 +9,4 @@
     - Reset score
     - Backwards movement
 * Add obstacles
+* Improve layout

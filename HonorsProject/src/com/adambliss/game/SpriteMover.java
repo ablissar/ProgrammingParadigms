@@ -16,6 +16,7 @@ public class SpriteMover implements Runnable
 			// Update model and redraw view
 			if(!model.getPaused()) {
 				model.updateScene( view.getWidth(), view.getHeight() );
+				view.setScore(model.getScore());
 				view.repaint();
 				
 			}

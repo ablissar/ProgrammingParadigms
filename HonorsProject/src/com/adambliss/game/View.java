@@ -18,6 +18,11 @@ public class View extends JFrame implements ActionListener {
 	// so it can be accessed from Controller
 	private JLabel instructions;
 	private JLabel instructionHint; 
+	private JLabel score;
+	
+	public void setScore( int scoreIn ) {
+		score.setText( "High score: " + scoreIn );
+	}
 	
 	private class MyPanel extends JPanel {
 		Controller controller;
@@ -64,9 +69,14 @@ public class View extends JFrame implements ActionListener {
         
         // JLabel containing hint for displaying instructions
         instructionHint = new JLabel("Press 'p' to pause game and display instructions.");
-        instructionHint.setHorizontalAlignment(SwingConstants.LEFT);
-        instructionHint.setVerticalAlignment(SwingConstants.BOTTOM);
+        // instructionHint.setHorizontalAlignment(SwingConstants.CENTER);
+        // instructionHint.setVerticalAlignment(SwingConstants.BOTTOM);
         panel.add(instructionHint);
+        
+        // JLabel containing score
+        score = new JLabel("High score: ");
+        //score.setAlignmentX(LEFT_ALIGNMENT);
+        panel.add(score);
         
         getContentPane().add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

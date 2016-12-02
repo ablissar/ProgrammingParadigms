@@ -11,6 +11,7 @@ class Model
     private Bucket bucket;
 	private int numTokens = 15;
 	private boolean paused = false;
+	private int highScore;
 	
 	public void switchPaused () {
 		paused = !paused;
@@ -18,6 +19,10 @@ class Model
 	
 	public boolean getPaused() {
 		return paused;
+	}
+	
+	public int getScore() {
+		return highScore;
 	}
 	
 	public static enum Direction {
@@ -70,6 +75,7 @@ class Model
     		// If player overlaps the bucket, reset numCaptured and report score
     		if( player.overlaps(bucket) ) {
     			System.out.println("Captured " + player.getNumCaptured() + " tokens.");
+    			reset();
     			
     		}
     	}
@@ -82,9 +88,20 @@ class Model
     	player.moveSprite(dir);
     }
     
-    public void initialize()
+    public void reset()
     {
-    	tokens.clear();
+    	// Calculate score
+    	if(player.getNumCaptured() > highScore) {
+    		highScore = player.getNumCaptured();
+    	}
+    	
+    	// Add player
     	player = new Player();
+    	
+    	// Add tokens
+    	tokens.clear();
+    	for(int i = 0; i < numTokens; i++) {
+    		tokens.add(new Token());
+    	}
     }
 }
