@@ -47,6 +47,11 @@ class Controller implements MouseListener, KeyListener
     	if( e.getKeyChar() == 'r' || e.getKeyChar() == 'R' ) {
     		model.setPaused(false);
     	}
+    	
+    	// Display instructions
+    	if( e.getKeyChar() == 'i' || e.getKeyChar() == 'I') {
+    		view.switchInstructions();
+    	}
     }
     
     public void keyPressed(KeyEvent e) {  
