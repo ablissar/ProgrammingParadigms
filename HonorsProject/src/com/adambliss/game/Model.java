@@ -27,6 +27,10 @@ class Model
 		return highScore;
 	}
 	
+	public boolean getFlipped() {
+		return player.getFlipped();
+	}
+	
 	public static enum Direction {
 		UP, LEFT, RIGHT, DOWN, UP_LEFT, UP_RIGHT, DOWN_LEFT, DOWN_RIGHT, NONE
 	}
@@ -122,17 +126,24 @@ class Model
 			
     		for ( Token token : tokens ) {
     			token.updateState( width, height );
-    			if( player.overlaps(token) )
-    				// If the token isn't already removed, remove it
-    				if( !token.isRemoved() ) {
-    					token.removeToken();
+    			if( player.overlaps(token) && !token.isRemoved() ) {
+    		
+    				token.removeToken();
+    				if( token.getColor() == "gold" ) {
     					player.setNumCaptured(player.getNumCaptured()+1);
+    				}
+    				else if (token.getColor() == "red" ) {
+    					player.setNumCaptured(0);
+    				}
+    				else if (token.getColor() == "orange" ) {
+    					player.setFlipped(true);
+    				}
 				}
     		}
     		
     		// If player overlaps the bucket, reset numCaptured and report score
     		if( player.overlaps(bucket) ) {
-    			System.out.println("Captured " + player.getNumCaptured() + " tokens.");
+    			//System.out.println("Captured " + player.getNumCaptured() + " tokens.");
     			reset();
     			
     		}

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 public class Player extends Sprite{
 	
 	private int numCaptured;
+	private boolean flipped;
 	
 	public Player() {
 		super("temp.png");
@@ -19,6 +20,14 @@ public class Player extends Sprite{
 	
 	public int getNumCaptured() {
 		return numCaptured;
+	}
+
+	public void setFlipped(boolean in) {
+		flipped = in;
+	}
+	
+	public boolean getFlipped() {
+		return flipped;
 	}
 	
 	public void updateImate( Graphics g ) {

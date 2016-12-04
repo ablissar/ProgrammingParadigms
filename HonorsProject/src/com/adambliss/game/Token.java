@@ -9,15 +9,30 @@ public class Token extends Sprite {
 	boolean isRemoved = false;
 	static int numRemoved = 0;
 	private Direction currentDir;
+	private String color;
 	
 	public Token() {
 		super("token.png");
+		
+		if( 0 == (int)(Math.random() * 10) ) {
+			setImage("redToken.png");
+			color="red";
+		}
+		else if( 1 == (int)(Math.random() * 10) ) {
+			setImage("orangeToken.png");
+			color="orange";
+		}
+		else {
+			color="gold";
+		}
+		
 		setX( (int)(Math.random()*600) );
 		setY( (int)(Math.random()*600) );
 		setSpeed(5);
 		moveCounter = 0;
 		randDirChange = (int)(Math.random() * 75)+25;
 		currentDir = randDir();
+		
 	}
 
 	public void addMove() { moveCounter++; }
@@ -28,6 +43,10 @@ public class Token extends Sprite {
 	
 	public Direction getDir() { 
 		return currentDir; 
+	}
+	
+	public String getColor() {
+		return color;
 	}
 	
 	public boolean dirChange() { 

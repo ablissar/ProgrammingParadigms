@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+//import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class View extends JFrame implements ActionListener {
@@ -53,9 +53,13 @@ public class View extends JFrame implements ActionListener {
         instructions = new JLabel(
         		"<html> Instructions <br> "
         		+ "Use the arrow keys to move the player. <br>"
-        		+ "Try to collect as many tokens as quickly as possible. <br>"
+        		+ "Try to collect as many gold tokens as quickly as possible. <br>"
         		+ "Tokens are collected by touching them then touching the bin. <br>"
         		+ "When you touch the bin, your score will be displayed, your position and the tokens will reset. <br>"
+        		+ "Red tokens will reset your tokens for the round to 0. <br>"
+        		+ "Orange tokens will invert the direction of your movement for the current round. <br>"
+        		+ "While paused, press 's' to save your game. <br>"
+        		+ "At any pont, press 'l' (lowercase L) to load your last saved game. <br>"
         		+ "Press 'p' to resume."
         		+ " </html>");
         instructions.setOpaque(true);

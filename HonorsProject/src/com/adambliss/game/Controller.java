@@ -124,31 +124,48 @@ class Controller implements MouseListener, KeyListener
     }
 
     public Direction getDirection() {
+    	Direction direction = null;
     	if( upPressed  && !downPressed) {
     		if( !leftPressed && !rightPressed )
-    			return Direction.UP;
+    			direction = Direction.UP;
     		else if( leftPressed && !rightPressed )
-    			return Direction.UP_LEFT;
+    			direction = Direction.UP_LEFT;
     		else if( !leftPressed && rightPressed )
-    			return Direction.UP_RIGHT;
+    			direction = Direction.UP_RIGHT;
     	}
     	else if( downPressed && !upPressed) {
     		if( !leftPressed && !rightPressed )
-    			return Direction.DOWN;
+    			direction = Direction.DOWN;
     		else if( leftPressed && !rightPressed )
-    			return Direction.DOWN_LEFT;
+    			direction = Direction.DOWN_LEFT;
     		else if( !leftPressed && rightPressed )
-    			return Direction.DOWN_RIGHT;
+    			direction = Direction.DOWN_RIGHT;
     	}
     	else if( leftPressed && !rightPressed) {
-    		return Direction.LEFT;
+    		direction = Direction.LEFT;
     	}
     	else if( !leftPressed && rightPressed ) {
-    		return Direction.RIGHT;
+    		direction = Direction.RIGHT;
     	}
-    	return Direction.NONE;
+    	else direction = Direction.NONE;
+    	if(model.getFlipped()) {
+    		return flipDirection(direction);
+    	}
+    	else return direction;
+    	
     }
 
+    public Direction flipDirection (Direction dirIn) {
+    	if(dirIn == Direction.UP) return Direction.DOWN;
+    	else if (dirIn == Direction.DOWN) return Direction.UP;
+    	else if (dirIn == Direction.LEFT) return Direction.RIGHT;
+    	else if (dirIn == Direction.RIGHT) return Direction.LEFT;
+    	else if (dirIn == Direction.UP_LEFT) return Direction.UP_RIGHT;
+    	else if (dirIn == Direction.UP_RIGHT) return Direction.UP_LEFT;
+    	else if (dirIn == Direction.DOWN_LEFT) return Direction.DOWN_RIGHT;
+    	else if (dirIn == Direction.DOWN_RIGHT) return Direction.DOWN_LEFT;
+    	else return Direction.NONE;
+    }
    
     public static void main(String[] args) throws Exception {
         //  Use the following line to determine which directory your program

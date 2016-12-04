@@ -8,5 +8,4 @@
 * Add new token types
     - Reset score
     - Backwards movement
-* Add obstacles
-* Improve layout
+* Improve HUD layout
