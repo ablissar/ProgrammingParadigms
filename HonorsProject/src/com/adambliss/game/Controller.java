@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
+import java.io.*;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -68,6 +68,18 @@ class Controller implements MouseListener, KeyListener
     		model.switchPaused();
     		view.switchInstructions();
     	}
+    	
+    	// Save the game
+    	if( e.getKeyChar() == 's' || e.getKeyChar() == 'P' ) {
+    		if(model.isPaused()) {
+    			model.saveGame("savedGame.txt");
+    		}
+    	}
+    	
+    	// Load last saved game
+    	if (e.getKeyChar() == 'l' || e.getKeyChar() == 'L' ) {
+    		model.loadGame("savedGame.txt");
+    	}
     }
     
     public void keyPressed(KeyEvent e) {  
@@ -86,13 +98,31 @@ class Controller implements MouseListener, KeyListener
                 rightPressed = true;
                 break;
         }
-        if( !model.getPaused() ) {
+        if( !model.isPaused() ) {
 	        model.movePlayer(getDirection());
 	        model.updateScene( view.getWidth(), view.getHeight() );
 			view.repaint();
         }
     }
     
+    public void keyReleased(KeyEvent e) {  
+    	int keyCode = e.getKeyCode();
+        switch( keyCode ) { 
+            case KeyEvent.VK_UP:
+            	upPressed = false;
+                break;
+            case KeyEvent.VK_DOWN:
+            	downPressed = false;
+                break;
+            case KeyEvent.VK_LEFT:
+            	leftPressed = false;
+                break;
+            case KeyEvent.VK_RIGHT:
+            	rightPressed = false;
+                break;
+         }
+    }
+
     public Direction getDirection() {
     	if( upPressed  && !downPressed) {
     		if( !leftPressed && !rightPressed )
@@ -118,25 +148,8 @@ class Controller implements MouseListener, KeyListener
     	}
     	return Direction.NONE;
     }
-    
-    public void keyReleased(KeyEvent e) {  
-    	int keyCode = e.getKeyCode();
-        switch( keyCode ) { 
-            case KeyEvent.VK_UP:
-            	upPressed = false;
-                break;
-            case KeyEvent.VK_DOWN:
-            	downPressed = false;
-                break;
-            case KeyEvent.VK_LEFT:
-            	leftPressed = false;
-                break;
-            case KeyEvent.VK_RIGHT:
-            	rightPressed = false;
-                break;
-         }
-    }
-    
+
+   
     public static void main(String[] args) throws Exception {
         //  Use the following line to determine which directory your program
         //  is being executed from, since that is where the image files will

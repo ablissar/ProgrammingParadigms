@@ -1,6 +1,8 @@
 package com.adambliss.game;
 import java.awt.Graphics;
-import java.io.IOException;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 
@@ -17,7 +19,7 @@ class Model
 		paused = !paused;
 	}
 	
-	public boolean getPaused() {
+	public boolean isPaused() {
 		return paused;
 	}
 	
@@ -41,6 +43,62 @@ class Model
     	}
     }
 
+    public void saveGame( String filename ) {
+    	try {
+    		FileWriter fileWriter = new FileWriter(filename);
+    		BufferedWriter writer = new BufferedWriter(fileWriter);
+    		
+    		String output = "";
+        	output += player.getX() + " " + player.getY() + " " + player.getNumCaptured() + "\n";
+        	output += highScore + "\n";
+        	output += bucket.getX() + " " + bucket.getY() + "\n";
+        	for( Token token : tokens ) {
+        		output += token.getX() + " " + token.getY() + " " + ((token.isRemoved()) ? '0' : '1') + "\n";
+        	}
+        	
+        	writer.write(output);	
+    		writer.close();
+    	}
+    	
+    	catch(IOException e) {
+    		System.out.println("Could not write to file '" + filename + "'.");
+    	}
+    	
+    }
+    
+    public void loadGame( String filename ) {
+    	try {
+    		Scanner sc = new Scanner (new File(filename));
+
+    		player.setX(sc.nextInt());
+    		player.setY(sc.nextInt());
+    		player.setNumCaptured(sc.nextInt()); 
+    		
+    		highScore = sc.nextInt();
+    		
+    		bucket.setX(sc.nextInt());
+    		bucket.setY(sc.nextInt());
+    		
+    		for( Token token : tokens ) {
+    			token.setX(sc.nextInt());
+    			token.setY(sc.nextInt());
+    			if (sc.hasNextInt()) {
+	    			if( sc.nextInt() == 0 && !token.isRemoved() ) {
+	    				token.removeToken();
+	    			}
+	    			else if( sc.nextInt() == 1 && token.isRemoved() ) {
+	    				token.returnToken();
+	    			}
+    			}
+    		} 
+    		
+    		sc.close();
+    	}
+    	catch (IOException e) {
+    		System.out.println("Could not read to file '" + filename + "'.");
+    	}
+    }
+    
     public void update(Graphics g) 
     {
     	// Update image for every token (and the player)
@@ -67,7 +125,7 @@ class Model
     			if( player.overlaps(token) )
     				// If the token isn't already removed, remove it
     				if( !token.isRemoved() ) {
-    					token.removed();
+    					token.removeToken();
     					player.setNumCaptured(player.getNumCaptured()+1);
 				}
     		}

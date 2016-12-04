@@ -38,9 +38,14 @@ public class Token extends Sprite {
 		super.updateImage(g);
 	}
 	
-	public void removed() {
+	public void removeToken() {
 		isRemoved = true;
 		numRemoved++;
+	}
+	
+	public void returnToken() {
+		isRemoved = false;
+		numRemoved--;
 	}
 	
 	public boolean isRemoved() {
