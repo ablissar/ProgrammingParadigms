@@ -86,13 +86,12 @@ class Model
     		for( Token token : tokens ) {
     			token.setX(sc.nextInt());
     			token.setY(sc.nextInt());
-    			if (sc.hasNextInt()) {
-	    			if( sc.nextInt() == 0 && !token.isRemoved() ) {
-	    				token.removeToken();
-	    			}
-	    			else if( sc.nextInt() == 1 && token.isRemoved() ) {
-	    				token.returnToken();
-	    			}
+    			boolean isRemoved = (sc.nextInt() == 0) ? false : true;
+    			if( !isRemoved && !token.isRemoved() ) {
+    				token.removeToken();
+    			}
+    			else if( isRemoved && token.isRemoved() ) {
+    				token.returnToken();
     			}
     		} 
     		
