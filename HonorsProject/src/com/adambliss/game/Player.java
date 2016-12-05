@@ -7,7 +7,7 @@ public class Player extends Sprite{
 	private boolean flipped;
 	
 	public Player() {
-		super("temp.png");
+		super("player.jpg");
 		setX(0);
 		setY(0);
 		setSpeed(20);

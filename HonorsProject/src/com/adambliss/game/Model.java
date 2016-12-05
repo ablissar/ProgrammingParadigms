@@ -101,6 +101,7 @@ class Model
     		System.out.println("Could not read to file '" + filename + "'.");
     	}
     }
+
     
     public void update(Graphics g) 
     {
@@ -153,7 +154,12 @@ class Model
     // Takes in direction, moves player in given direction.
     // Direction comes from controller (key input)
     public void movePlayer( Direction dir ) {
-    	player.moveSprite(dir);
+    	if(player.getFlipped()) {
+    		player.moveSprite(player.flipDirection(dir));
+    	}
+    	else {
+    		player.moveSprite(dir);
+    	}
     }
     
     public void reset()

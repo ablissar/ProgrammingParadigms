@@ -1,11 +1,7 @@
 * Add menu bar
  
-* Add file save
-
 ===Optional===
 * Streamline player movement
-* Improve token edge handling
-* Add new token types
-    - Reset score
-    - Backwards movement
 * Improve HUD layout
+* Change background color (or change icons)
+* Player icon change on move

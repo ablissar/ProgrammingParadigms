@@ -44,7 +44,6 @@ class Sprite
 		g.drawImage(getImage(), getX(), getY(), 60, 60, null);
 	}
 	
-	
 	public void updateState( int width, int height ) {    }
 	
 	public boolean overlaps( Sprite s )
@@ -87,5 +86,17 @@ class Sprite
     	case NONE:
     		break;
     	}
+    }
+	
+	public Direction flipDirection (Direction dirIn) {
+    	if(dirIn == Direction.UP) return Direction.DOWN;
+    	else if (dirIn == Direction.DOWN) return Direction.UP;
+    	else if (dirIn == Direction.LEFT) return Direction.RIGHT;
+    	else if (dirIn == Direction.RIGHT) return Direction.LEFT;
+    	else if (dirIn == Direction.UP_LEFT) return Direction.UP_RIGHT;
+    	else if (dirIn == Direction.UP_RIGHT) return Direction.UP_LEFT;
+    	else if (dirIn == Direction.DOWN_LEFT) return Direction.DOWN_RIGHT;
+    	else if (dirIn == Direction.DOWN_RIGHT) return Direction.DOWN_LEFT;
+    	else return Direction.NONE;
     }
 }

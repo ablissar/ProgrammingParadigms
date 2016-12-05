@@ -29,6 +29,7 @@ public class View extends JFrame implements ActionListener {
 
         MyPanel(Controller c) {
             controller = c;
+            setBackground(Color.WHITE);
             addMouseListener(c);
         }
 
@@ -82,10 +83,15 @@ public class View extends JFrame implements ActionListener {
         // score.setAlignmentX(LEFT_ALIGNMENT);
         panel.add(score);
         
+        panel.setBackground(Color.WHITE);
+        panel.setOpaque(true);
+        panel.setVisible(true);
         getContentPane().add(panel);
+        getContentPane().setBackground(Color.WHITE);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         addKeyListener(c);
+        repaint();
     }
 
     public void actionPerformed(ActionEvent evt) {

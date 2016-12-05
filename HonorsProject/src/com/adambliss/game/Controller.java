@@ -124,47 +124,29 @@ class Controller implements MouseListener, KeyListener
     }
 
     public Direction getDirection() {
-    	Direction direction = null;
     	if( upPressed  && !downPressed) {
     		if( !leftPressed && !rightPressed )
-    			direction = Direction.UP;
+    			return Direction.UP;
     		else if( leftPressed && !rightPressed )
-    			direction = Direction.UP_LEFT;
+    			return Direction.UP_LEFT;
     		else if( !leftPressed && rightPressed )
-    			direction = Direction.UP_RIGHT;
+    			return Direction.UP_RIGHT;
     	}
     	else if( downPressed && !upPressed) {
     		if( !leftPressed && !rightPressed )
-    			direction = Direction.DOWN;
+    			return Direction.DOWN;
     		else if( leftPressed && !rightPressed )
-    			direction = Direction.DOWN_LEFT;
+    			return Direction.DOWN_LEFT;
     		else if( !leftPressed && rightPressed )
-    			direction = Direction.DOWN_RIGHT;
+    			return Direction.DOWN_RIGHT;
     	}
     	else if( leftPressed && !rightPressed) {
-    		direction = Direction.LEFT;
+    		return Direction.LEFT;
     	}
     	else if( !leftPressed && rightPressed ) {
-    		direction = Direction.RIGHT;
+    		return Direction.RIGHT;
     	}
-    	else direction = Direction.NONE;
-    	if(model.getFlipped()) {
-    		return flipDirection(direction);
-    	}
-    	else return direction;
-    	
-    }
-
-    public Direction flipDirection (Direction dirIn) {
-    	if(dirIn == Direction.UP) return Direction.DOWN;
-    	else if (dirIn == Direction.DOWN) return Direction.UP;
-    	else if (dirIn == Direction.LEFT) return Direction.RIGHT;
-    	else if (dirIn == Direction.RIGHT) return Direction.LEFT;
-    	else if (dirIn == Direction.UP_LEFT) return Direction.UP_RIGHT;
-    	else if (dirIn == Direction.UP_RIGHT) return Direction.UP_LEFT;
-    	else if (dirIn == Direction.DOWN_LEFT) return Direction.DOWN_RIGHT;
-    	else if (dirIn == Direction.DOWN_RIGHT) return Direction.DOWN_LEFT;
-    	else return Direction.NONE;
+    	return Direction.NONE;
     }
    
     public static void main(String[] args) throws Exception {

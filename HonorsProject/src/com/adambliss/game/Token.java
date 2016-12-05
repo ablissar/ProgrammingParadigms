@@ -73,10 +73,20 @@ public class Token extends Sprite {
 	
 	public void inBounds(int width, int height) {
 		// Series of checks to keep player in bounds
-		if( getX() > width - 60 || getX() < 0 ||
-				getY() > height - 60 || getY() < 0) {
-			setDir( randDir() );
+		if( getX() >= width - 60 ) {
+			setX(width - 60);
 		}
+		else if( getX() <= 0 ) {
+			setX(0);
+		}
+		else if( getY() >= height - 60 ) {
+			setY(height - 60);
+		}
+		else if( getY() <= 0 ) {
+			setY(0);
+		}
+		else return;
+		setDir(randDir());
 	}
 	
 	public void updateState( int width, int height ) {
