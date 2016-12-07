@@ -1,0 +1,7 @@
+* Add menu bar
+ 
+===Optional===
+* Streamline player movement
+* Improve HUD layout
+* Change background color (or change icons)
+* Player icon change on move
