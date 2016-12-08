@@ -45,7 +45,21 @@ function validateUserInfo($username, $password) {
     return false;
 }
 
+// Function that updates a user's info based on the form on their page
+function updateUserInfo() {
+    // Checks that info has been updated
+    if( isset($_REQUEST['firstName']) ) {
+        $_SESSION['firstName'] = $_REQUEST['firstName'];
+        $_SESSION['lastName'] = $_REQUEST['lastName'];
+        $_SESSION['color'] = $_REQUEST['color'];
+        $_SESSION['title'] = $_REQUEST['title'];
+        $_SESSION['imageLink'] = $_REQUEST['imageLink'];
+    }
+}
+
 // === Start of website code ===
+
+updateUserInfo();
 
 // If user enter info that matches the file, set the session info
 if( isset($_REQUEST['username']) && isset($_REQUEST['password'])
@@ -57,13 +71,25 @@ if( isset($_REQUEST['username']) && isset($_REQUEST['password'])
 if( isset($_SESSION['firstName']) ) { ?>
     <html>
     <body style="background-color: <?php echo $_SESSION['color']; ?>">
+        <!-- Display user's title and image -->
         <title> <?php echo $_SESSION['title']; ?> </title>
         <h1> <?php echo $_SESSION['title']; ?> </h1>
         <img src="<?php echo $_SESSION['imageLink']; ?>" alt="User's Image" style="width:15%">
         <br />
+        <!-- Logout button to clear session -->
         <form action="assignment11.php" method="get" >
             <input type="hidden" name="logout" value="true" />
             <input type="submit" value="Logout" />
+        </form>
+        <br />
+        <!-- Form to change user settings -->
+        <form action="assignment11.php" method="get" >
+            First name: <input type="text" name="firstName" value="<?php echo $_SESSION['firstName']; ?>"> <br />
+            Last name: <input type="text" name="lastName" value="<?php echo $_SESSION['lastName']; ?>"> <br />
+            Background color: <input type="text" name="color" value="<?php echo $_SESSION['color']; ?>"> <br />
+            Title: <input type="text" name="title" value="<?php echo $_SESSION['title']; ?>"> <br />
+            Image: <input type="text" name="imageLink" value="<?php echo $_SESSION['imageLink']; ?>"> <br />
+            <input type="submit" />
         </form>
     </body>
     </html>
