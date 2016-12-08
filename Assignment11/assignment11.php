@@ -34,12 +34,28 @@ function getUserInfo($username, $password) {
 // Function that validates a given username and password against the users file
 function validateUserInfo($username, $password) {
     $file = fopen("assignment11-account-info.txt", "r") or exit("Unable to open user file");
-    $index = 0;
     while(!feof($file)) {
         $line = trim(fgets($file));
         if (strlen($line) > 0) {
             $arr = explode(";", $line);
             if($username == $arr[0] && $password == $arr[1]) {
+                fclose($file);
+                return true;
+            }
+        }
+    }
+    fclose($file);
+    return false;
+}
+
+// Function that checks if username is already taken
+function usernameTaken($username) {
+    $file = fopen("assignment11-account-info.txt", "r") or exit("Unable to open user file");
+    while(!feof($file)) {
+        $line = trim(fgets($file));
+        if (strlen($line) > 0) {
+            $arr = explode(";", $line);
+            if($username == $arr[0]) {
                 fclose($file);
                 return true;
             }
@@ -101,7 +117,18 @@ if( isset($_REQUEST['username']) && isset($_REQUEST['password']) ) {
     if( validateUserInfo($_REQUEST['username'], $_REQUEST['password']) ) {
         getUserInfo($_REQUEST['username'], $_REQUEST['password']);
     }
+    // If username and password aren't valid, display error message
     else echo "Error: Invalid username/password.";
+}
+
+// If new user info is entered, validate it
+if( isset($_REQUEST['newUsername']) ) {
+    if( $_REQUEST['newUsername'] == "" || $_REQUEST['newPassword'] == "" ) {
+        echo "Error: both fields must be filled out.";
+    }
+    else if( usernameTaken($_REQUEST['newUsername']) ) {
+        echo "Error: username already taken.";
+    }
 }
 
 
