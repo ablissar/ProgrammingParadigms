@@ -5,6 +5,7 @@ logout();
 // Function that ends the session and logs the user out
 function logout() {
     if( isset($_REQUEST['logout']) ) {
+        // Destroy the session
         session_unset();
         session_destroy();
         session_start();
@@ -27,6 +28,7 @@ function getUserInfo($username, $password) {
             }
         }
     }
+    fclose($file);
 }
 
 // Function that validates a given username and password against the users file
@@ -38,10 +40,12 @@ function validateUserInfo($username, $password) {
         if (strlen($line) > 0) {
             $arr = explode(";", $line);
             if($username == $arr[0] && $password == $arr[1]) {
+                fclose($file);
                 return true;
             }
         }
     }
+    fclose($file);
     return false;
 }
 
@@ -49,6 +53,37 @@ function validateUserInfo($username, $password) {
 function updateUserInfo() {
     // Checks that info has been updated
     if( isset($_REQUEST['firstName']) ) {
+        // Reads file into array
+        $file = fopen("assignment11-account-info.txt", "r+") or exit("Unable to open user file");
+        $counter = 0;
+        while(!feof($file)) {
+            $line = trim(fgets($file));
+            if( strlen($line) > 0 ) {
+                $fileArr[$counter] = $line;
+                $counter++;
+            }
+        }
+        // Searches array for relevant user entry and replaces it
+        for( $x = 0; $x < $counter; $x++) {
+            $lineArr = explode(";", $fileArr[$x]);
+
+            if( $lineArr[2] == $_SESSION['firstName'] && $lineArr[3] == $_SESSION['lastName'] ) {
+                $lineArr[2] = $_REQUEST['firstName'];
+                $lineArr[3] = $_REQUEST['lastName'];
+                $lineArr[4] = $_REQUEST['color'];
+                $lineArr[5] = $_REQUEST['title'];
+                $lineArr[6] = $_REQUEST['imageLink'];
+
+                $fileArr[$x] = implode(";", $lineArr);
+            }
+        }
+        // Rewrites info to file
+        file_put_contents("assignment11-account-info.txt", "");
+        for( $x = 0; $x < $counter; $x++ ) {
+            fwrite($file, $fileArr[$x]."\n");
+        }
+
+        // Updates session settings
         $_SESSION['firstName'] = $_REQUEST['firstName'];
         $_SESSION['lastName'] = $_REQUEST['lastName'];
         $_SESSION['color'] = $_REQUEST['color'];
@@ -62,10 +97,13 @@ function updateUserInfo() {
 updateUserInfo();
 
 // If user enter info that matches the file, set the session info
-if( isset($_REQUEST['username']) && isset($_REQUEST['password'])
-    && validateUserInfo($_REQUEST['username'], $_REQUEST['password']) ) {
-    getUserInfo($_REQUEST['username'], $_REQUEST['password']);
+if( isset($_REQUEST['username']) && isset($_REQUEST['password']) ) {
+    if( validateUserInfo($_REQUEST['username'], $_REQUEST['password']) ) {
+        getUserInfo($_REQUEST['username'], $_REQUEST['password']);
+    }
+    else echo "Error: Invalid username/password.";
 }
+
 
 // Page to be displayed if session info is set
 if( isset($_SESSION['firstName']) ) { ?>
@@ -97,7 +135,8 @@ if( isset($_SESSION['firstName']) ) { ?>
     }
 
 // Login form
-else { ?>
+else {
+    ?>
     <html>
         <title>Welcome to Adam Bliss's Assignment 11 PHP page!</title>
         <h1>Welcome to Adam Bliss's Assignment 11 PHP page!</h1>
