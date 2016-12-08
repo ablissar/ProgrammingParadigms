@@ -1,5 +1,15 @@
 <?php
 session_start();
+logout();
+
+// Function that ends the session and logs the user out
+function logout() {
+    if( isset($_REQUEST['logout']) ) {
+        session_unset();
+        session_destroy();
+        session_start();
+    }
+}
 
 // Function that gets user info and stores it in session
 function getUserInfo($username, $password) {
@@ -50,6 +60,11 @@ if( isset($_SESSION['firstName']) ) { ?>
         <title> <?php echo $_SESSION['title']; ?> </title>
         <h1> <?php echo $_SESSION['title']; ?> </h1>
         <img src="<?php echo $_SESSION['imageLink']; ?>" alt="User's Image" style="width:15%">
+        <br />
+        <form action="assignment11.php" method="get" >
+            <input type="hidden" name="logout" value="true" />
+            <input type="submit" value="Logout" />
+        </form>
     </body>
     </html>
 <?php
