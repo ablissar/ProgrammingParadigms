@@ -108,6 +108,13 @@ function updateUserInfo() {
     }
 }
 
+// Function that creates a new user account and writes it to the file
+function newUser() {
+    $file = fopen("assignment11-account-info.txt", "a") or exit("Unable to open user file");
+    fwrite($file, $_REQUEST['newUsername'].";".$_REQUEST['newPassword'].";".$_REQUEST['newFirstName'].";".$_REQUEST['newLastName'].";"."white;"."Welcome to ".$_REQUEST['newFirstName']. " ".$_REQUEST['newLastName']."'s Assignment 11 PHP page!;"."http://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Stick_Figure.svg/170px-Stick_Figure.svg.png");
+    getUserInfo($_REQUEST['newUsername'], $_REQUEST['newPassword']);
+}
+
 // === Start of website code ===
 
 updateUserInfo();
@@ -129,8 +136,10 @@ if( isset($_REQUEST['newUsername']) ) {
     else if( usernameTaken($_REQUEST['newUsername']) ) {
         echo "Error: username already taken.";
     }
+    else {
+        newUser();
+    }
 }
-
 
 // Page to be displayed if session info is set
 if( isset($_SESSION['firstName']) ) { ?>
@@ -176,6 +185,8 @@ else {
             </form>
             <p> New Users:
             <form action="assignment11.php" method="get">
+                First name: <input type="text" name="newFirstName" /> <br />
+                Last name: <input type="text" name="newLastName" /> <br />
                 Choose your username: <input type="text" name="newUsername" /> <br />
                 Choose your password: <input type="text" name="newPassword" /> <br />
                 <input type="submit" /> <br />
